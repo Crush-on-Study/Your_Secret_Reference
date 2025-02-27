@@ -1,0 +1,135 @@
+/* 전체 헤더 스타일 */
+.header {
+    width: 100%;
+    margin: 0 auto; /* ✅ 가운데 정렬 */
+    background-color: #f5f2ec;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* ✅ 헤더 내부 컨테이너 (로고 & 검색창) */
+  .header-container {
+    display: flex;
+    justify-content: space-between; /* ✅ 로고는 왼쪽, 검색창은 오른쪽 */
+    align-items: center;
+  }
+  
+  /* 로고 */
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
+  .logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  /* ✅ 검색창 컨테이너 (오른쪽 정렬) */
+  .search-container {
+    display: flex;
+    justify-content: flex-end; /* ✅ 오른쪽 정렬 */
+    flex-grow: 1; /* ✅ 오른쪽으로 밀기 */
+    margin-right: 20px;
+  }
+  
+  /* 검색창 스타일 */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background: #ddd;
+    padding: 5px 15px;
+    border-radius: 20px;
+    width: 250px;
+  }
+  
+  .search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  .search-icon {
+    color: #0056b3;
+    cursor: pointer;
+  }
+  
+  /* ✅ 네비게이션 (왼쪽 정렬) */
+  .nav-menu {
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  .nav-menu ul {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-menu li {
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .nav-menu .active {
+    font-weight: bold;
+    border-bottom: 2px solid #0056b3;
+  }
+  
+
+  /* ✅ 다크 모드 토글 버튼 */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+  
+  /* 태양 & 달 아이콘 */
+  .toggle-icon {
+    font-size: 20px;
+    margin: 0 10px;
+    color: #333;
+  }
+  
+  .sun {
+    color: #f39c12; /* ☀️ 태양 아이콘 색상 (노랑) */
+  }
+  
+  .moon {
+    color: #555; /* 🌙 달 아이콘 색상 (회색) */
+  }
+  
+  /* ✅ 토글 스위치 */
+  .toggle-switch {
+    width: 50px;
+    height: 25px;
+    background: #ccc;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  /* ✅ 토글 스위치 원 */
+  .toggle-circle {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: left 0.3s;
+  }

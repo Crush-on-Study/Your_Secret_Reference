@@ -1,0 +1,62 @@
+/* ✅ ✅ ✅ 미디어쿼리: 반응형 적용 ✅ ✅ ✅ */
+
+/* 📌 태블릿 (768px 이하) */
+@media (max-width: 768px) {
+    .header-container {
+      flex-direction: column; /* ✅ 로고 & 검색창 세로 배치 */
+      align-items: center;
+    }
+  
+    .search-container {
+      justify-content: center;
+      width: 100%; /* ✅ 검색창 전체 너비 사용 */
+      margin-top: 10px;
+    }
+  
+    .search-bar {
+      width: 80%; /* ✅ 검색창 크기 조정 */
+    }
+  
+    .nav-menu ul {
+      justify-content: center; /* ✅ 네비게이션 중앙 정렬 */
+    }
+  }
+  
+  /* 📌 모바일 (600px 이하) */
+  @media (max-width: 600px) {
+    .header {
+      padding: 10px;
+    }
+  
+    .logo {
+      font-size: 18px;
+    }
+  
+    .search-bar {
+      width: 100%; /* ✅ 검색창이 꽉 차도록 */
+    }
+  
+    .nav-menu ul {
+      flex-direction: column; /* ✅ 네비게이션 세로 정렬 */
+      align-items: center;
+    }
+  
+    .nav-menu li {
+      padding: 8px 0;
+    }
+  
+    .dark-mode-toggle {
+      margin-bottom: 5px;
+    }
+  
+    .toggle-switch {
+      width: 40px;
+      height: 20px;
+    }
+  
+    .toggle-circle {
+      width: 16px;
+      height: 16px;
+      left: 2px;
+    }
+  }
