@@ -1,0 +1,13 @@
+.radar-chart-container {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .radar-chart-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  

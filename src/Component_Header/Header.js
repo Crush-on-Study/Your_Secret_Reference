@@ -9,7 +9,7 @@ function Header() {
       <div className="header-container">
         {/* 왼쪽: 로고 */}
         <div className="logo">
-          <img src="/logo.png" alt="Company Logo" />
+          <img src="/assets/Component_Header_logo.webp" alt="Site Logo" />
           <span>Your Secret Reference</span>
         </div>
 
