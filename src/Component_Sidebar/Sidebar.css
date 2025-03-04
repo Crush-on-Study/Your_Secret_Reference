@@ -11,8 +11,8 @@
   
   /* 프로필 사진 */
   .profile-img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 3px solid #ddd;
     margin-bottom: 10px;

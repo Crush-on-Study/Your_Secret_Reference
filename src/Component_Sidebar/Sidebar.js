@@ -1,7 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
 import "./Sidebar_mediaQ.css";
-// import profileImg from "../assets/profile.jpg"; // ✅ 프로필 사진 (이미지 추가 필요 -> 오둥이 사진 가져오쟈...)
 import { FaEnvelope, FaExternalLinkAlt, FaEye } from "react-icons/fa"; // ✅ 아이콘 추가
 
 function Sidebar() {
@@ -9,7 +8,7 @@ function Sidebar() {
     <aside className="sidebar">
       {/* 프로필 사진 */}
       <div className="profile">
-        {/* <img src={profileImg} alt="Profile" className="profile-img" /> */}
+        <img src={"/assets/Component_Sidebar_profile.png"} alt="Profile" className="profile-img" />
         <h2 className="nickname">😎Crush on Study😎</h2>
         <p className="real-name">KANG HYUN BIN</p>
       </div>
