@@ -1,0 +1,15 @@
+.Algorithm-page {
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .Algorithm-page h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  .Algorithm-page p {
+    font-size: 16px;
+    color: #333;
+  }
+  

@@ -1,0 +1,101 @@
+/* ✅ 기존 레이아웃 유지 */
+.Top_Container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    /* FadeIn 애니메이션 주기 위한 투명도 0 세팅 */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  /* ✅ Fade-in 애니메이션 적용 */
+  /* ✅ 전체 화면을 감싸는 컨테이너 */
+.Top_Container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* ✅ 헤더 컨테이너 */
+  .Header_Container {
+    width: 100%;
+  }
+  /* ✅ 메인 레이아웃 (사이드바 + 메인 콘텐츠 포함) */
+  .Main_Container {
+    display: flex;
+    flex: 1;  /* 남은 공간 차지 */
+    gap: 20px;
+    padding: 20px;
+  }
+  /* ✅ 사이드바 */
+  .Sidebar_Container {
+    width: 250px;
+    flex-shrink: 0;
+  }
+  
+  .MainContent_Container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+  }
+
+  /* ✅ 개별 페이지의 컨텐츠도 사이드바를 침범하지 않도록 설정 */
+.Network_Page_Container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .Intro_Carousel,
+  .Tech_chart,
+  .Career {
+    width: 100%;
+    min-height: 200px;
+    text-align: center;
+  }
+  
+  /* ✅ 다크모드 스타일 */
+  body.dark-mode {
+    background-color: #121212;
+    color: #f8f9fa;
+  }
+  
+  /* ✅ 헤더 다크모드 */
+  body.dark-mode .Header_Container {
+    background-color: #1e1e1e;
+  }
+  
+  /* ✅ 사이드바 다크모드 */
+  body.dark-mode .Sidebar_Container {
+    background-color: #252525;
+  }
+  
+  /* ✅ 메인 컨텐츠 다크모드 */
+  body.dark-mode .MainContent_Container {
+    background-color: #1e1e1e;
+  }
+  
+  /* ✅ 네비게이션 다크모드 */
+  body.dark-mode .nav-menu ul {
+    background-color: #252525;
+  }
+  
+  body.dark-mode .nav-menu li {
+    color: #f8f9fa;
+  }
+  
+  body.dark-mode .nav-menu .active {
+    border-bottom: 2px solid #007bff;
+  }
+  
+  /* ✅ 검색창 다크모드 */
+  body.dark-mode .search-bar {
+    background: #333;
+  }
+  
+  body.dark-mode .search-bar input {
+    color: #f8f9fa;
+  }
+  

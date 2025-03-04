@@ -1,0 +1,117 @@
+/* 전체 헤더 스타일 */
+.header {
+    width: 100%;
+    margin: 0 auto; /* ✅ 가운데 정렬 */
+    background-color: #f5f2ec;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* ✅ 헤더 내부 컨테이너 (로고 & 검색창) */
+  .header-container {
+    display: flex;
+    justify-content: space-between; /* ✅ 로고는 왼쪽, 검색창은 오른쪽 */
+    align-items: center;
+  }
+  
+  /* 로고 */
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
+  .logo img {
+    width: 40px;
+    margin-right: 10px;
+  }
+  
+  /* ✅ 검색창 컨테이너 (오른쪽 정렬) */
+  .search-container {
+    display: flex;
+    justify-content: flex-end; /* ✅ 오른쪽 정렬 */
+    flex-grow: 1; /* ✅ 오른쪽으로 밀기 */
+    margin-right: 20px;
+  }
+  
+  /* 검색창 스타일 */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background: #ddd;
+    padding: 5px 15px;
+    border-radius: 20px;
+    width: 250px;
+  }
+  
+  .search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  .search-icon {
+    color: #0056b3;
+    cursor: pointer;
+  }
+  
+/* ✅ GNB 스타일 */
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* ✅ 링크 기본 스타일 제거 */
+  .nav-menu a,
+  .logo a {
+    text-decoration: none; /* 🔥 밑줄 제거 */
+    color: inherit; /* 🔥 부모 요소 색상 유지 */
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  /* ✅ 방문한 링크 스타일 제거 */
+  .nav-menu a:visited {
+    color: inherit; /* 🔥 방문 후 색상 유지 */
+  }
+  
+  /* ✅ 링크 hover 효과 (선택사항) */
+  .nav-menu a:hover {
+    color: #007bff; /* 🔥 마우스 올리면 색 변경 */
+  }
+
+  /* 현재 보고 있는 GNB Tab 하이라이트 처리 */
+  .nav-menu .nav-link {
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .nav-menu .nav-link:hover {
+    background: rgba(0, 0, 255, 0.1);
+  }
+  
+  .nav-menu .nav-link.active {
+    font-weight: bold;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+  }
+
+  /* ✅ 토글 버튼을 검색창 위에 위치하도록 스타일 조정 */
+.theme-toggle-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px; /* 검색창과의 간격 추가 */
+  }
+  

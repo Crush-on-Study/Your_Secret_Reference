@@ -1,0 +1,28 @@
+/* ✅ 게시글 작성 폼 */
+.add-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .add-post-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+  
+  .add-post-form .quill-editor {
+    height: 200px;
+    background: white;
+  }
+  
+  .add-post-form button {
+    padding: 10px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
