@@ -1,41 +1,49 @@
 /* 기본 사이드바 스타일 */
 .sidebar {
     width: 250px;
-    background: #f8f9fa; /* ✅ 라이트 모드 기본 배경 */
+    background: #dfffe0; /* 연두색 컬러 적용 */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
     font-family: Arial, sans-serif;
-    color: #000; /* ✅ 기본 글자색 */
-    transition: background 0.3s, color 0.3s; /* ✅ 부드러운 전환 효과 */
+    color: #333;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* ✅ 다크모드 적용 */
+/* 다크모드 적용 */
 .sidebar.dark-mode {
-    background: #1e1e1e; /* ✅ 다크모드 배경 */
-    color: #e0e0e0; /* ✅ 다크모드 글자색 */
+    background: #c6a5ff; /* 연보라 컬러 적용 */
+    color: #e0e0e0;
 }
 
-/* 프로필 사진 */
+/* 프로필 섹션 */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
 .profile-img {
-    width: 150px;
-    height: 150px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    border: 3px solid #ddd;
-    margin-bottom: 10px;
+    border: 3px solid #a3e4a1;
 }
 
-/* ✅ 다크모드 프로필 사진 테두리 */
 .sidebar.dark-mode .profile-img {
-    border: 3px solid #555;
+    border: 3px solid #9c7cd4;
 }
 
-/* 닉네임 & 이름 */
+.profile-text {
+    flex-grow: 1;
+}
+
 .nickname {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    margin: 5px 0;
+    color: #388e3c;
 }
 
 .real-name {
@@ -43,76 +51,91 @@
     color: #555;
 }
 
-/* ✅ 다크모드 이름 색상 조정 */
 .sidebar.dark-mode .real-name {
     color: #bbb;
 }
 
-/* 회사 & 경력 */
-.career {
-    background: #e9ecef;
+/* 경력 섹션 */
+.career-section {
+    background: #c8ffb0;
     padding: 10px;
     border-radius: 5px;
-    margin: 10px 0;
+    margin-bottom: 15px;
     font-size: 14px;
+    color: #333;
 }
 
-/* ✅ 다크모드 회사 & 경력 배경 */
-.sidebar.dark-mode .career {
-    background: #333;
+.sidebar.dark-mode .career-section {
+    background: #b28eff;
 }
 
 /* 방문자 수 */
-.visitor-count {
+.visitor-section {
     font-size: 14px;
-    background: #e9ecef;
+    background: #b2e6b3;
     padding: 8px;
     border-radius: 5px;
-    margin: 10px 0;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* ✅ 다크모드 방문자 수 배경 */
-.sidebar.dark-mode .visitor-count {
-    background: #444;
+.sidebar.dark-mode .visitor-section {
+    background: #a07be1;
 }
 
 /* 연락처 */
-.contact {
-    margin: 10px 0;
+.contact-section {
+    margin-bottom: 15px;
     font-size: 14px;
+    color: #333;
 }
 
-.contact .icon {
+.contact-section .icon {
     margin-right: 5px;
-    color: #555;
+    color: #388e3c;
 }
 
-/* ✅ 다크모드 연락처 아이콘 색상 */
-.sidebar.dark-mode .contact .icon {
-    color: #bbb;
+.sidebar.dark-mode .contact-section .icon {
+    color: #ddd;
 }
 
 /* 외부 링크 */
-.links a {
-    display: block;
-    text-decoration: none;
-    color: #007bff;
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #57c84d;
+    color: white;
     font-size: 14px;
-    margin-top: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    gap: 10px;
 }
 
-/* ✅ 다크모드 링크 색상 */
-.sidebar.dark-mode .links a {
-    color: #1e90ff;
+.link-btn:hover {
+    background: #43a047;
 }
 
-.links a:hover {
-    text-decoration: underline;
+.sidebar.dark-mode .link-btn {
+    background: #7e5bd4;
 }
 
-.links .icon {
-    margin-left: 5px;
+.sidebar.dark-mode .link-btn:hover {
+    background: #6c4acb;
+}
+
+.link-icon {
+    width: 24px; /* 아이콘 크기 조절 */
+    height: 24px;
 }

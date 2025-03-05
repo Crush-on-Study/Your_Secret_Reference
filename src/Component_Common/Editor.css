@@ -1,0 +1,124 @@
+/* ✅ 새 글 작성 버튼 스타일 */
+.new-post-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    margin-bottom: 15px;
+}
+
+.new-post-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* ✅ 다크모드에서 버튼 스타일 */
+body.dark-mode .new-post-btn {
+    background: #444;
+    color: #f8f9fa;
+}
+
+body.dark-mode .new-post-btn:hover {
+    background: #666;
+}
+
+
+
+
+/* ✅ Editor 전체 컨테이너 */
+.editor-container {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ✅ 다크모드 적용 */
+body.dark-mode .editor-container {
+    background: #252525;
+    color: #f8f9fa;
+}
+
+/* ✅ Quill 에디터 스타일 */
+.ql-container {
+    font-size: 16px;
+    min-height: 500px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ✅ 다크모드에서 Quill 에디터 배경 */
+body.dark-mode .ql-container {
+    background: #1e1e1e;
+    color: #f8f9fa;
+    border: 1px solid #444;
+}
+
+/* ✅ Quill 에디터 툴바 */
+.ql-toolbar {
+    background: #eee;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ✅ 다크모드 툴바 */
+body.dark-mode .ql-toolbar {
+    background: #333;
+    color: #f8f9fa;
+}
+
+/* ✅ 입력 필드 (제목) */
+.editor-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ✅ 다크모드에서 제목 입력 필드 */
+body.dark-mode .editor-container input[type="text"] {
+    background: #252525;
+    color: #f8f9fa;
+    border: 1px solid #444;
+}
+
+/* ✅ 등록 버튼 */
+.editor-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.editor-container button:hover {
+    background: #0056b3;
+}
+
+/* ✅ 다크모드에서 버튼 */
+body.dark-mode .editor-container button {
+    background: #444;
+}
+
+body.dark-mode .editor-container button:hover {
+    background: #666;
+}
+

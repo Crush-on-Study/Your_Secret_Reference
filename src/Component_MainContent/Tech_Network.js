@@ -1,38 +1,37 @@
 import React from "react";
 import { ResponsiveNetwork } from "@nivo/network";
-import data from "./Tech_NetworkData.json"; // ✅ JSON 데이터 가져오기
-import "./Tech_Network.css"; // ✅ 스타일 적용
+import "./Tech_Network.css"; // 스타일 적용
+
+const data = {
+    nodes: [
+        { id: "JavaScript", radius: 10, color: "#f7df1e" },
+        { id: "React", radius: 15, color: "#61dafb" },
+        { id: "Node.js", radius: 12, color: "#68a063" },
+        { id: "Python", radius: 10, color: "#3572A5" },
+        { id: "Django", radius: 12, color: "#092E20" },
+    ],
+    links: [
+        { source: "JavaScript", target: "React" },
+        { source: "React", target: "Node.js" },
+        { source: "Python", target: "Django" },
+        { source: "JavaScript", target: "Python" },
+    ],
+};
 
 const TechNetwork = () => {
-  return (
-    <div className="network-chart-container">
-      <h2>🌐 My Tech Network</h2>
-      <ResponsiveNetwork
-        data={data}
-        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-        linkDistance={(e) => e.distance}
-        centeringStrength={0.3}
-        repulsivity={6}
-        nodeSize={(n) => n.size}
-        activeNodeSize={(n) => 1.5 * n.size}
-        nodeColor={(e) => e.color}
-        nodeBorderWidth={1}
-        nodeBorderColor={{
-          from: "color",
-          modifiers: [["darker", 0.8]],
-        }}
-        linkThickness={(n) => 2 + 2 * n.target.data.height}
-        linkBlendMode="multiply"
-        motionConfig="wobbly"
-        tooltip={({ node }) => (
-          <div className="tooltip-box">
-            <strong>{node.id}</strong>
-            <p>Level: {node.data.height}</p>
-          </div>
-        )}
-      />
-    </div>
-  );
+    return (
+        <div className="Tech_network">
+            <ResponsiveNetwork
+                data={data}
+                margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+                linkDistance={50}
+                repulsivity={100}
+                nodeColor={node => node.color}
+                linkThickness={2}
+                motionConfig="wobbly"
+            />
+        </div>
+    );
 };
 
 export default TechNetwork;

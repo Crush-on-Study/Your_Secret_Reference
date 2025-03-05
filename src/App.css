@@ -67,7 +67,7 @@ body.dark-mode .sidebar {
   }
 
 
-  
+
   /* ✅ 개별 페이지의 컨텐츠도 사이드바를 침범하지 않도록 설정 */
 .Network_Page_Container {
     display: flex;
@@ -77,11 +77,31 @@ body.dark-mode .sidebar {
   
   .Intro_Carousel,
   .Tech_chart,
+  .Tech_Network,
   .Career {
     width: 100%;
     min-height: 200px;
     text-align: center;
+    margin-bottom: 20px;
   }
+
+  /* ✅ Chart 컨테이너: 가로 정렬 */
+.chart {
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap; /* 반응형: 화면이 작아지면 세로 배치 */
+}
+
+/* ✅ 개별 Chart 스타일 */
+.chart > * {
+    flex: 1; /* 동일한 공간 차지 */
+    min-width: 400px; /* 최소 너비 설정 */
+    max-width: 50%; /* 최대 너비 제한 */
+}
+
   
   /* ✅ 다크모드 스타일 */
   body.dark-mode {

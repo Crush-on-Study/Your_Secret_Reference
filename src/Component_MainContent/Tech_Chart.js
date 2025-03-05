@@ -10,6 +10,7 @@ const data = [
   { skill: "Git", level: 65 },
   { skill: "React", level: 75 },
   { skill: "Ruby on Rails", level: 40 },
+  { skill: "Figma", level: 52 },
 ];
 
 const RadarChart = () => {

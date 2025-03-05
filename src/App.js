@@ -15,7 +15,8 @@ import Footer from "./Component_Footer/Footer";
 // Back 관련 Import 리스트
 import Database from "./Component_MainContent/Component_Database/Database";
 import Network from "./Component_MainContent/Component_Network/Network";
-import Algorithm from "./Component_MainContent/Component_Algorithm/Algorithm";
+import DataStructure from "./Component_MainContent/Component_DataStructure/DataStructure";
+import OperatingSystem from "./Component_MainContent/Component_OperatingSystem/OperatingSystem";
 
 /******************************* */
 import "./App.css";
@@ -27,8 +28,13 @@ function Home() {
         <div id="Intro_Carousel" className="Intro_Carousel">
           <IntroCarousel />
         </div>
-        <div id="Tech_chart" className="Tech_chart">
-          <TechChart />
+        <div id="chart" className="chart">
+            <div id="Tech_chart" className="Tech_chart">
+                <TechChart />
+            </div>
+            <div id="Tech_Network" className="Tech_Network">
+                <TechNetwork />
+            </div>
         </div>
         <div id="Career" className="Career">
           <CareerSection />
@@ -96,10 +102,10 @@ function App() {
                   />
 
                     <Route
-                    path="/Algorithm"
+                    path="/data-structure"
                     element={
-                      <div className="Algorithm_Page_Container">
-                        <Algorithm />
+                      <div className="DataStructure_Page_Container">
+                        <DataStructure />
                       </div>
                     }
                   />
@@ -109,6 +115,14 @@ function App() {
                     element={
                       <div className="Database_Page_Container">
                         <Database />
+                      </div>
+                    }
+                  />
+                    <Route
+                    path="/os"
+                    element={
+                      <div className="OperatingSystem_Page_Container">
+                        <OperatingSystem />
                       </div>
                     }
                   />

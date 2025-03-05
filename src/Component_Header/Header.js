@@ -8,6 +8,11 @@ import { ThemeContext } from "../Component_Common/ThemeContext";
 import lightModeBg from "./Component_Header_light_mode_static.png";
 import darkModeBg from "./Component_Header_dark_mode.webp"; // 🔥 다크모드용 배경 추가
 
+// 로그인 UI 불러오기 (아코디언 스타일) + 회원가입 (모달창)
+import LoginAccordion from "../Component_Common/LoginAccordion";
+import SignUpModal from "../Component_Common/SignUpModal";
+
+
 function Header() {
     const { isDarkMode } = useContext(ThemeContext);
   
@@ -41,6 +46,8 @@ function Header() {
   
         <div className="theme-toggle-container">
           <ThemeToggle />
+          <LoginAccordion />
+          <SignUpModal />
         </div>
       </header>
     );

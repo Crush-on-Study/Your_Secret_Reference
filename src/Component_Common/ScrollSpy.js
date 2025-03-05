@@ -9,7 +9,7 @@ const sections = [
 
 const ScrollSpy = () => {
   const [activeSection, setActiveSection] = useState("");
-  const [scrollPosition, setScrollPosition] = useState(1000); // ✅ 초기 위치 설정
+  const [scrollPosition, setScrollPosition] = useState(150); // ✅ 초기 위치 설정
 
   useEffect(() => {
     const handleScroll = () => {

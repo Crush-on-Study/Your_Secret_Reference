@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import usePosts from "../../Infra_Firebase/usePosts"; // ✅ Firebase Hook 사용
 import PostEditor from "../../Component_Common/PostEditor"; // ✅ 공통 에디터 컴포넌트
-import "./Network.css";
+import "./DataStructure.css";
 import "../../Component_Common/Editor.css";
 
-const Network = () => {
+const DataStructure = () => {
   const { posts, addNewPost } = usePosts();
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
@@ -16,8 +16,8 @@ const Network = () => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div className="Network-page">
-      <h2>📡 CS이론 : 네트워크 </h2>
+    <div className="DataStructure-page">
+      <h2>📡 CS이론 : 자료구조 </h2>
 
       {/* ✅ 공통 에디터 사용 */}
       <PostEditor onSubmit={addNewPost} />
@@ -69,4 +69,4 @@ const Network = () => {
   );
 };
 
-export default Network;
+export default DataStructure;
