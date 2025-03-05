@@ -1,7 +1,39 @@
-.Tech_network {
+.network-container {
     width: 100%;
-    height: 400px; /* 네트워크 그래프 높이 설정 */
-    background: rgba(255, 255, 255, 0.1); /* 배경 색상 */
+    height: 500px;
+    background-color: var(--network-bg);
     border-radius: 10px;
-    padding: 10px;
-}
+    padding: 20px;
+    position: relative;
+  }
+  
+  /* ✅ 차트명 스타일 */
+  .network-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--network-title-color);
+  }
+  
+  /* ✅ 툴팁 스타일 */
+  .network-tooltip {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  /* ✅ 라이트/다크모드 테마 */
+  :root {
+    --network-bg: #f9f9f9;
+    --network-title-color: #333333;
+  }
+  
+  body.dark-mode {
+    --network-bg: #1e1e1e;
+    --network-title-color: #ffffff;
+  }
+  

@@ -1,0 +1,63 @@
+.StatsGanttChart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* ✅ 간트차트 행 (라벨 + 바) */
+.gantt-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 30px;
+}
+
+/* ✅ 라벨 스타일 */
+.gantt-label {
+    width: 120px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ✅ 프로그레스 바 컨테이너 */
+.gantt-bar-container {
+    flex-grow: 1;
+    height: 15px;
+    background: rgba(200, 200, 200, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ✅ 프로그레스 바 애니메이션 */
+.gantt-bar {
+    height: 100%;
+    transition: width 1.5s ease-in-out;
+}
+
+/* ✅ 카드 컬러와 동일한 바 색상   #ff9a8b, #ff6a8 */
+.gantt-bar-1 { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
+.gantt-bar-2 { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+.gantt-bar-3 { background: linear-gradient(135deg, #ffec61, #f321d7); }
+.gantt-bar-4 { background: linear-gradient(135deg, #ff9a8b, #ff6a8b); }
+
+/* ✅ 다크모드 적용 */
+body.dark-mode .gantt-label { color: #f8f9fa; }
+body.dark-mode .gantt-bar-1 { background: linear-gradient(135deg, #3a1c71, #d76d77); }
+body.dark-mode .gantt-bar-2 { background: linear-gradient(135deg, #232526, #414345); }
+body.dark-mode .gantt-bar-3 { background: linear-gradient(135deg, #4b6cb7, #182848); }
+body.dark-mode .gantt-bar-4 { background: linear-gradient(135deg, #ff7eb3, #ff758c); }
+
+/* ✅ 반응형 조정 */
+@media (max-width: 900px) {
+    .gantt-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .gantt-label {
+        width: 100%;
+    }
+}
