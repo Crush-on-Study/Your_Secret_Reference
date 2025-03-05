@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../Component_Common/ThemeContext"; 
 import Slider from "react-slick";
 import "./IntroCarousel.css";
 
 // 캐러셀 스타일을 위해 필요한 CSS 파일 추가
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 const projects = [
   {
@@ -31,29 +31,41 @@ const projects = [
 ];
 
 const IntroCarousel = () => {
+  const { isDarkMode } = useContext(ThemeContext);
+  const [themeClass, setThemeClass] = useState("");
+
+  useEffect(() => {
+    // ✅ 현재 body의 다크모드 상태 감지하여 클래스 추가
+    if (document.body.classList.contains("dark-mode")) {
+      setThemeClass("dark-mode");
+    } else {
+      setThemeClass("");
+    }
+  }, [isDarkMode]); // 다크모드 상태 변경 시 감지
+
   const settings = {
-    dots: true, // 하단 네비게이션 버튼
-    infinite: true, // 무한 루프
+    dots: true,
+    infinite: true,
     speed: 500,
-    slidesToShow: 1, // 한 번에 보여줄 슬라이드 개수
+    slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true, // 자동 재생
-    autoplaySpeed: 3000, // 3초마다 변경
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   return (
-    <div className="intro-carousel">
+    <div className={`intro-carousel ${themeClass}`}>
       {/* 자기소개 */}
-      <div className="intro-text">
+      <div className={`intro-text ${themeClass}`}>
         <h2>👋 Hi, IT's Hyunbin </h2>
         <p>
-            <strong>1. Daily Routine :</strong> Game🤩🎮 , Coin Trading😭📉 , Side Project🖥️
+          <strong>1. Daily Routine :</strong> Game🤩🎮 , Coin Trading😭📉 , Side Project🖥️
         </p>
         <p>
-            <strong>2. Job Interest :</strong> IT Project Manager , Front-End Developer , HR Manager
+          <strong>2. Job Interest :</strong> IT Project Manager , Front-End Developer , HR Manager
         </p>
         <p>
-            <strong>Look around a lot of things on my site!</strong>
+          <strong>Look around a lot of things on my site!</strong>
         </p>
       </div>
 

@@ -1,117 +1,144 @@
-/* 전체 헤더 스타일 */
+/* ✅ 헤더 스타일 수정 */
 .header {
     width: 100%;
-    margin: 0 auto; /* ✅ 가운데 정렬 */
-    background-color: #f5f2ec;
-    padding: 10px 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 300px; /* ✅ 헤더 높이 조정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: background 0.5s ease-in-out;
     overflow: hidden;
-  }
-  
-  /* ✅ 헤더 내부 컨테이너 (로고 & 검색창) */
-  .header-container {
-    display: flex;
-    justify-content: space-between; /* ✅ 로고는 왼쪽, 검색창은 오른쪽 */
-    align-items: center;
-  }
-  
-  /* 로고 */
-  .logo {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
+}
+
+/* ✅ 헤더 오버레이 (암호화폐 배경 효과) */
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+/* ✅ 다크 모드 & 라이트 모드 배경 설정 */
+.light-mode .header {
+    /* background-image: url('/public/assets/Component_Header_light_mode_header.gif'); */
+    color: black;
+}
+
+.dark-mode .header {
+    /* background-image: url('/assets/dark-mode-bg.gif'); */
+    color: white;
+}
+
+/* ✅ 블로그 제목 스타일 */
+.blog-title {
+    font-size: 3rem;
     font-weight: bold;
-    color: #0056b3;
-  }
-  
-  .logo img {
-    width: 40px;
-    margin-right: 10px;
-  }
-  
-  /* ✅ 검색창 컨테이너 (오른쪽 정렬) */
-  .search-container {
+    position: relative;
+    z-index: 10;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    width: 0;
+    animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* ✅ 블로그 부제목 스타일 */
+.subtitle {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ✅ GNB (네비게이션 바) 스타일 */
+.nav-menu {
+    position: absolute;
+    top: 10px;
+    width: 100%;
     display: flex;
-    justify-content: flex-end; /* ✅ 오른쪽 정렬 */
-    flex-grow: 1; /* ✅ 오른쪽으로 밀기 */
-    margin-right: 20px;
-  }
-  
-  /* 검색창 스타일 */
-  .search-bar {
+    justify-content: center;
+    z-index: 10;
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.nav-menu a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #ff5c5c;
+}
+
+/* ✅ 검색창 중앙 배치 & 크기 확대 */
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.search-bar {
     display: flex;
     align-items: center;
-    background: #ddd;
-    padding: 5px 15px;
-    border-radius: 20px;
-    width: 250px;
-  }
-  
-  .search-bar input {
+    width: 600px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+
+.search-bar input {
     border: none;
     background: transparent;
     outline: none;
-    padding: 5px;
-    width: 100%;
+    flex-grow: 1;
     font-size: 16px;
-  }
-  
-  .search-icon {
-    color: #0056b3;
-    cursor: pointer;
-  }
-  
-/* ✅ GNB 스타일 */
-.nav-menu ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-  }
-  
-  /* ✅ 링크 기본 스타일 제거 */
-  .nav-menu a,
-  .logo a {
-    text-decoration: none; /* 🔥 밑줄 제거 */
-    color: inherit; /* 🔥 부모 요소 색상 유지 */
-    font-weight: 500;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  /* ✅ 방문한 링크 스타일 제거 */
-  .nav-menu a:visited {
-    color: inherit; /* 🔥 방문 후 색상 유지 */
-  }
-  
-  /* ✅ 링크 hover 효과 (선택사항) */
-  .nav-menu a:hover {
-    color: #007bff; /* 🔥 마우스 올리면 색 변경 */
-  }
+    color: white;
+}
 
-  /* 현재 보고 있는 GNB Tab 하이라이트 처리 */
-  .nav-menu .nav-link {
+.search-button {
+    background: #ff5c5c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
     font-size: 16px;
-    text-decoration: none;
-    color: #333;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
-  }
-  
-  .nav-menu .nav-link:hover {
-    background: rgba(0, 0, 255, 0.1);
-  }
-  
-  .nav-menu .nav-link.active {
     font-weight: bold;
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
-  }
+    cursor: pointer;
+    transition: background 0.3s;
+}
 
-  /* ✅ 토글 버튼을 검색창 위에 위치하도록 스타일 조정 */
-.theme-toggle-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 5px; /* 검색창과의 간격 추가 */
-  }
-  
+.search-button:hover {
+    background: #ff3b3b;
+}

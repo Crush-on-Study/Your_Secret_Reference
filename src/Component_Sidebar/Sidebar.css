@@ -1,46 +1,69 @@
-/* 사이드바 스타일 */
+/* 기본 사이드바 스타일 */
 .sidebar {
     width: 250px;
-    background: #f8f9fa;
+    background: #f8f9fa; /* ✅ 라이트 모드 기본 배경 */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
     font-family: Arial, sans-serif;
-  }
-  
-  /* 프로필 사진 */
-  .profile-img {
+    color: #000; /* ✅ 기본 글자색 */
+    transition: background 0.3s, color 0.3s; /* ✅ 부드러운 전환 효과 */
+}
+
+/* ✅ 다크모드 적용 */
+.sidebar.dark-mode {
+    background: #1e1e1e; /* ✅ 다크모드 배경 */
+    color: #e0e0e0; /* ✅ 다크모드 글자색 */
+}
+
+/* 프로필 사진 */
+.profile-img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     border: 3px solid #ddd;
     margin-bottom: 10px;
-  }
-  
-  /* 닉네임 & 이름 */
-  .nickname {
+}
+
+/* ✅ 다크모드 프로필 사진 테두리 */
+.sidebar.dark-mode .profile-img {
+    border: 3px solid #555;
+}
+
+/* 닉네임 & 이름 */
+.nickname {
     font-size: 20px;
     font-weight: bold;
     margin: 5px 0;
-  }
-  
-  .real-name {
+}
+
+.real-name {
     font-size: 14px;
     color: #555;
-  }
-  
-  /* 회사 & 경력 */
-  .career {
+}
+
+/* ✅ 다크모드 이름 색상 조정 */
+.sidebar.dark-mode .real-name {
+    color: #bbb;
+}
+
+/* 회사 & 경력 */
+.career {
     background: #e9ecef;
     padding: 10px;
     border-radius: 5px;
     margin: 10px 0;
     font-size: 14px;
-  }
-  
-  /* 방문자 수 */
-  .visitor-count {
+}
+
+/* ✅ 다크모드 회사 & 경력 배경 */
+.sidebar.dark-mode .career {
+    background: #333;
+}
+
+/* 방문자 수 */
+.visitor-count {
     font-size: 14px;
     background: #e9ecef;
     padding: 8px;
@@ -49,37 +72,47 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .visitor-count .icon {
-    margin-right: 5px;
-  }
-  
-  /* 연락처 */
-  .contact {
+}
+
+/* ✅ 다크모드 방문자 수 배경 */
+.sidebar.dark-mode .visitor-count {
+    background: #444;
+}
+
+/* 연락처 */
+.contact {
     margin: 10px 0;
     font-size: 14px;
-  }
-  
-  .contact .icon {
+}
+
+.contact .icon {
     margin-right: 5px;
     color: #555;
-  }
-  
-  /* 외부 링크 */
-  .links a {
+}
+
+/* ✅ 다크모드 연락처 아이콘 색상 */
+.sidebar.dark-mode .contact .icon {
+    color: #bbb;
+}
+
+/* 외부 링크 */
+.links a {
     display: block;
     text-decoration: none;
     color: #007bff;
     font-size: 14px;
     margin-top: 8px;
-  }
-  
-  .links a:hover {
+}
+
+/* ✅ 다크모드 링크 색상 */
+.sidebar.dark-mode .links a {
+    color: #1e90ff;
+}
+
+.links a:hover {
     text-decoration: underline;
-  }
-  
-  .links .icon {
+}
+
+.links .icon {
     margin-left: 5px;
-  }
-  
+}

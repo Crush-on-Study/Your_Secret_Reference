@@ -1,0 +1,23 @@
+.network-chart-container {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .network-chart-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* ✅ 툴팁 스타일 */
+  .tooltip-box {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+  }
+  

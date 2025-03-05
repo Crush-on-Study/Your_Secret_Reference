@@ -27,12 +27,37 @@
     gap: 20px;
     padding: 20px;
   }
-  /* ✅ 사이드바 */
-  .Sidebar_Container {
+  /*************************** ✅ 사이드바 **************************************/
+/* ✅ 사이드바 컨테이너 구조 정리 */
+.Sidebar_Container {
     width: 250px;
     flex-shrink: 0;
-  }
-  
+    display: flex; /* ✅ 내부 요소 정렬 */
+    align-items: flex-start; /* ✅ 사이드바 위쪽 정렬 */
+}
+
+/* ✅ 사이드바 스타일 수정 */
+.sidebar {
+    width: 100%; /* ✅ 부모 컨테이너에 맞게 너비 조정 */
+    position: relative; /* ✅ 부모 컨테이너 안에서 정상 배치 */
+    background: #f8f9fa; /* ✅ 기본 배경 */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+
+/* ✅ 다크모드 적용 */
+body.dark-mode .Sidebar_Container {
+    background: #252525;
+}
+
+body.dark-mode .sidebar {
+    background: #1e1e1e; /* ✅ 다크모드에서 배경 수정 */
+    color: #f8f9fa;
+}
+
   .MainContent_Container {
     flex-grow: 1;
     display: flex;
@@ -41,6 +66,8 @@
     overflow-y: auto;
   }
 
+
+  
   /* ✅ 개별 페이지의 컨텐츠도 사이드바를 침범하지 않도록 설정 */
 .Network_Page_Container {
     display: flex;

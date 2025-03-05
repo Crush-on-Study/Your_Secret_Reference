@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Sidebar.css";
 import "./Sidebar_mediaQ.css";
-import { FaEnvelope, FaExternalLinkAlt, FaEye } from "react-icons/fa"; // ✅ 아이콘 추가
+import { ThemeContext } from "../Component_Common/ThemeContext"; // ✅ 다크모드 감지 추가
+import { FaEnvelope, FaExternalLinkAlt, FaEye } from "react-icons/fa";
 
 function Sidebar() {
+  const { isDarkMode } = useContext(ThemeContext); // ✅ 다크모드 여부 가져오기
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isDarkMode ? "dark-mode" : ""}`}>
       {/* 프로필 사진 */}
       <div className="profile">
         <img src={"/assets/Component_Sidebar_profile.png"} alt="Profile" className="profile-img" />
@@ -23,7 +26,6 @@ function Sidebar() {
       {/* 방문자 수 */}
       <div className="visitor-count">
         <FaEye className="icon" /> <span>Hits: 55 / 7483</span>
-        {/* 여기는 방문 횟수 호출 API가 들어갈 예정 */}
       </div>
 
       {/* 연락처 & 링크 */}

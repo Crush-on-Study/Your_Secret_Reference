@@ -1,9 +1,12 @@
-import React from "react";
+import React , {useContext} from "react";
+import { ThemeContext } from "../Component_Common/ThemeContext"; // ✅ 다크모드 감지 추가
 import "./CareerSection.css";
 
 const CareerSection = () => {
+    const { isDarkMode } = useContext(ThemeContext); // ✅ 다크모드 상태 가져오기
+
   return (
-    <div className="career-section">
+    <div className={`career-section ${isDarkMode ? "dark-mode" : ""}`}>
       <h2 className="section-title">📚 학력 및 경력 사항</h2>
 
       {/* 학력 사항 */}

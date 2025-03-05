@@ -1,33 +1,39 @@
 import React, { useContext, useEffect } from "react";
 import { ThemeContext } from "./ThemeContext";
-import { FaSun, FaMoon } from "react-icons/fa";
 import "./ThemeToggle.css";
 
 const ThemeToggle = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
 
   useEffect(() => {
-    // ✅ 다크모드 전환 시 현재 포커스를 유지
-    const activeElement = document.activeElement;
-    return () => {
-      if (activeElement) {
-        activeElement.focus();
-      }
-    };
+    // ✅ 다크모드 여부를 localStorage에 저장
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+    // ✅ body 클래스 변경 (헤더 배경 변경을 위해 필요)
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+      document.body.classList.remove("light-mode");
+    } else {
+      document.body.classList.add("light-mode");
+      document.body.classList.remove("dark-mode");
+    }
   }, [isDarkMode]);
 
   return (
     <div className="theme-toggle">
-      <FaSun className="theme-icon" />
       <label className="toggle-switch">
         <input
           type="checkbox"
           checked={isDarkMode}
           onChange={() => setIsDarkMode(!isDarkMode)}
         />
-        <span className="slider"></span>
+        <span className="slider">
+          <span className="sun"></span>
+          <span className="moon"></span>
+          <span className="stars"></span>
+          <span className="clouds"></span>
+        </span>
       </label>
-      <FaMoon className="theme-icon" />
     </div>
   );
 };

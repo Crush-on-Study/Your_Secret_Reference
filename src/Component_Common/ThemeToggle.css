@@ -1,22 +1,20 @@
-/* ✅ 토글 전체 컨테이너 */
+/* ✅ 토글 버튼 컨테이너 */
 .theme-toggle {
+    position: absolute;  /* ✅ 헤더 위에 배치 */
+    top: 10px;  /* ✅ 최상단 위치 */
+    right: 20px;  /* ✅ 오른쪽 정렬 */
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    z-index: 1000;  /* ✅ 다른 요소 위에 배치 */
   }
   
-  /* ✅ 태양 & 달 아이콘 */
-  .theme-icon {
-    font-size: 18px;
-    color: #ffa500; /* 기본 아이콘 색상 */
-  }
-  
-  /* ✅ 토글 스위치 스타일 */
+  /* ✅ 토글 스위치 */
   .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 40px;
-    height: 20px;
+    width: 70px;
+    height: 34px;
   }
   
   /* ✅ 체크박스 숨기기 */
@@ -26,7 +24,7 @@
     height: 0;
   }
   
-  /* ✅ 토글 스위치 바 */
+  /* ✅ 슬라이더 */
   .slider {
     position: absolute;
     cursor: pointer;
@@ -34,30 +32,87 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
+    background-color: #cce7ff; /* 기본 배경 (하늘) */
     border-radius: 34px;
-  }
-  
-  /* ✅ 토글 버튼 원 */
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
     transition: 0.4s;
+    overflow: hidden;
+  }
+  
+  /* ✅ 태양 */
+  .slider .sun {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: orange;
     border-radius: 50%;
+    transform: translateY(-50%);
+    transition: left 0.4s ease, opacity 0.4s ease;
   }
   
-  /* ✅ 체크된 상태 (다크모드) */
-  input:checked + .slider {
-    background-color: #007bff;
+  /* ✅ 달 */
+  .slider .moon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: gold;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: right 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
   }
   
-  input:checked + .slider:before {
-    transform: translateX(18px);
+  /* ✅ 별 */
+  .slider .stars {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 10px 10px white, 15px 5px white, 20px 15px white;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  /* ✅ 구름 */
+  .slider .clouds {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    width: 30px;
+    height: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 5px white, -10px 5px white;
+    transition: opacity 0.4s ease;
+  }
+  
+  /* ✅ 다크모드 스타일 */
+  .toggle-switch input:checked + .slider {
+    background-color: #222; /* 다크모드 배경 */
+  }
+  
+  /* ✅ 토글 애니메이션 */
+  .toggle-switch input:checked + .slider .sun {
+    left: calc(100% - 30px);
+    opacity: 0;
+  }
+  
+  .toggle-switch input:checked + .slider .moon {
+    right: calc(100% - 30px);
+    opacity: 1;
+  }
+  
+  .toggle-switch input:checked + .slider .stars {
+    opacity: 1;
+  }
+  
+  .toggle-switch input:checked + .slider .clouds {
+    opacity: 0;
   }
   

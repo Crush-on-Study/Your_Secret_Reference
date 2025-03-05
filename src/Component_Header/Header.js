@@ -1,86 +1,49 @@
-import React from "react";
-import { NavLink } from "react-router-dom"; // ✅ NavLink 사용하여 활성화 상태 감지
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
-import "./Header_mediaQ.css";
-import { FaSearch } from "react-icons/fa";
 import ThemeToggle from "../Component_Common/ThemeToggle";
+import { ThemeContext } from "../Component_Common/ThemeContext";
+
+// ✅ 배경 이미지 불러오기
+import lightModeBg from "./Component_Header_light_mode_static.png";
+import darkModeBg from "./Component_Header_dark_mode.webp"; // 🔥 다크모드용 배경 추가
 
 function Header() {
-  return (
-    <header className="header">
-      <div className="header-container">
-        {/* 왼쪽: 로고 */}
-        <div className="logo">
-          <img src="/assets/Component_Header_logo.webp" alt="Site Logo" />
-          <span>Your Secret Reference</span>
-        </div>
-
-        {/* 오른쪽: 검색창 */}
+    const { isDarkMode } = useContext(ThemeContext);
+  
+    return (
+      <header 
+        className="header" 
+        style={{ backgroundImage: `url(${isDarkMode ? darkModeBg : lightModeBg})` }} 
+      >
+        <h1 className="blog-title">Your Secret Reference</h1>
+  
+        <nav className="nav-menu">
+          <ul>
+            <li><NavLink to="/" exact className="nav-link">Home</NavLink></li>
+            <li><NavLink to="/network" className="nav-link">Network</NavLink></li>
+            <li><NavLink to="/os" className="nav-link">Operating System</NavLink></li>
+            <li><NavLink to="/data-structure" className="nav-link">Data Structure</NavLink></li>
+            <li><NavLink to="/database" className="nav-link">Database</NavLink></li>
+            <li><NavLink to="/frontend" className="nav-link">Front-End</NavLink></li>
+            <li><NavLink to="/qa" className="nav-link">QA</NavLink></li>
+            <li><NavLink to="/algorithm" className="nav-link">Algorithm</NavLink></li>
+            <li><NavLink to="/interview" className="nav-link">Real Interview</NavLink></li>
+          </ul>
+        </nav>
+  
         <div className="search-container">
           <div className="search-bar">
-            <input type="text" placeholder="Search" />
-            <FaSearch className="search-icon" />
+            <input type="text" placeholder="Do, What you want to find!" />
+            <button className="search-button">Search</button>
           </div>
         </div>
-      </div>
-
-      {/* ✅ 토글 버튼을 검색창 위로 이동 */}
-      <div className="theme-toggle-container">
-        <ThemeToggle />
-      </div>
-
-      {/* ✅ 네비게이션 (GNB) */}
-      <nav className="nav-menu">
-        <ul>
-          <li>
-            <NavLink to="/" exact className="nav-link" activeClassName="active">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/network" className="nav-link" activeClassName="active">
-              Network
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/os" className="nav-link" activeClassName="active">
-              Operating System
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/data-structure" className="nav-link" activeClassName="active">
-              Data Structure
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/database" className="nav-link" activeClassName="active">
-              Database
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/frontend" className="nav-link" activeClassName="active">
-              Front-End
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/qa" className="nav-link" activeClassName="active">
-              QA
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/algorithm" className="nav-link" activeClassName="active">
-              Algorithm
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/interview" className="nav-link" activeClassName="active">
-              Real Interview
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
-}
-
-export default Header;
+  
+        <div className="theme-toggle-container">
+          <ThemeToggle />
+        </div>
+      </header>
+    );
+  }
+  
+  export default Header;

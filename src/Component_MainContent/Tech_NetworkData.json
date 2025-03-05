@@ -1,0 +1,26 @@
+{
+    "nodes": [
+      { "id": "Programming", "height": 2, "size": 40, "color": "rgb(244, 117, 96)" },
+      { "id": "JavaScript", "height": 1, "size": 30, "color": "rgb(97, 205, 187)" },
+      { "id": "Python", "height": 1, "size": 30, "color": "rgb(97, 205, 187)" },
+      { "id": "React", "height": 1, "size": 30, "color": "rgb(97, 205, 187)" },
+      { "id": "Node.js", "height": 1, "size": 30, "color": "rgb(97, 205, 187)" },
+      { "id": "Machine Learning", "height": 1, "size": 30, "color": "rgb(97, 205, 187)" },
+      { "id": "Express", "height": 0, "size": 15, "color": "rgb(232, 193, 160)" },
+      { "id": "Django", "height": 0, "size": 15, "color": "rgb(232, 193, 160)" },
+      { "id": "TensorFlow", "height": 0, "size": 15, "color": "rgb(232, 193, 160)" },
+      { "id": "FastAPI", "height": 0, "size": 15, "color": "rgb(232, 193, 160)" }
+    ],
+    "links": [
+      { "source": "Programming", "target": "JavaScript", "distance": 80 },
+      { "source": "Programming", "target": "Python", "distance": 80 },
+      { "source": "Programming", "target": "React", "distance": 80 },
+      { "source": "Programming", "target": "Node.js", "distance": 80 },
+      { "source": "Programming", "target": "Machine Learning", "distance": 80 },
+      { "source": "JavaScript", "target": "Express", "distance": 50 },
+      { "source": "Python", "target": "Django", "distance": 50 },
+      { "source": "Machine Learning", "target": "TensorFlow", "distance": 50 },
+      { "source": "Python", "target": "FastAPI", "distance": 50 }
+    ]
+  }
+  

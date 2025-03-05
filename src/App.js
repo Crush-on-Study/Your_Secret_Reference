@@ -4,6 +4,7 @@ import { ThemeProvider } from "./Component_Common/ThemeContext";
 import Header from "./Component_Header/Header";
 import Sidebar from "./Component_Sidebar/Sidebar";
 import TechChart from "./Component_MainContent/Tech_Chart";
+import TechNetwork from "./Component_MainContent/Tech_Network";
 import CareerSection from "./Component_MainContent/CareerSection";
 import IntroCarousel from "./Component_MainContent/IntroCarousel";
 import ScrollSpy from "./Component_Common/ScrollSpy";
@@ -78,6 +79,7 @@ function App() {
                       <>
                         <IntroCarousel />
                         <TechChart />
+                        <TechNetwork />
                         <CareerSection />
                       </>
                     }

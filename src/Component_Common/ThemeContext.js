@@ -1,20 +1,23 @@
 import React, { createContext, useState, useEffect } from "react";
-// ✅ Context 생성
+
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
+  // ✅ localStorage에서 초기 다크모드 설정 불러오기
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
 
-  // ✅ 테마 변경 시 `body`에 클래스 추가/제거
   useEffect(() => {
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+    // ✅ body 태그에 다크모드 클래스 추가
     if (isDarkMode) {
       document.body.classList.add("dark-mode");
-      localStorage.setItem("theme", "dark");
+      document.body.classList.remove("light-mode");
     } else {
+      document.body.classList.add("light-mode");
       document.body.classList.remove("dark-mode");
-      localStorage.setItem("theme", "light");
     }
   }, [isDarkMode]);
 

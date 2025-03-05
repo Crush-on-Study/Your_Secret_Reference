@@ -1,44 +1,75 @@
+/* ✅ 기본 스타일 */
 .career-section {
-    background: #f8f9fa;
+    background: #f8f9fa; /* ✅ 라이트모드 배경 */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
     width: 80%;
-  }
-  
-  .section-title {
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ✅ 다크모드 적용 */
+body.dark-mode .career-section {
+    background: #1e1e1e; /* ✅ 다크모드 배경 */
+    color: #f8f9fa; /* ✅ 글자색 */
+}
+
+/* ✅ 섹션 제목 */
+.section-title {
     font-size: 24px;
     font-weight: bold;
     border-left: 5px solid #6a1b9a;
     padding-left: 10px;
     margin-bottom: 20px;
-  }
-  
-  .career-category h3 {
+}
+
+/* ✅ 카테고리 제목 */
+.career-category h3 {
     font-size: 18px;
     margin-bottom: 10px;
-  }
-  
-  .career-table {
+}
+
+/* ✅ 테이블 스타일 */
+.career-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-  }
-  
-  .career-table th,
-  .career-table td {
+}
+
+/* ✅ 테이블 헤더 스타일 */
+.career-table th {
+    background: #6a1b9a;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+/* ✅ 다크모드에서 테이블 헤더 색상 변경 */
+body.dark-mode .career-table th {
+    background: #4a148c;
+}
+
+/* ✅ 테이블 행 스타일 (짝수 줄 색상) */
+.career-table tr:nth-child(even) {
+    background: #f3e5f5;
+}
+
+/* ✅ 다크모드에서 테이블 행 색상 변경 */
+body.dark-mode .career-table tr:nth-child(even) {
+    background: #2a2a2a;
+}
+
+/* ✅ 테이블 셀 스타일 */
+.career-table th,
+.career-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
-  }
-  
-  .career-table th {
-    background: #6a1b9a;
-    color: white;
-  }
-  
-  .career-table tr:nth-child(even) {
-    background: #f3e5f5;
-  }
-  
+}
+
+/* ✅ 다크모드에서 테이블 보더 색상 변경 */
+body.dark-mode .career-table th,
+body.dark-mode .career-table td {
+    border: 1px solid #444;
+}
