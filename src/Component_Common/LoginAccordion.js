@@ -23,7 +23,7 @@ function LoginAccordion() {
         setTimeout(() => {
           setShowPasswordField(true);
         }, 500);
-      }, 2000);
+      }, 1500);
     }
   };
 
@@ -34,7 +34,7 @@ function LoginAccordion() {
       setShowConfirmation(false);
       setIsLoggedIn(true);
       setIsOpen(false);
-    }, 2000);
+    }, 1500);
   };
 
   const handleLogout = () => {
@@ -53,9 +53,14 @@ function LoginAccordion() {
       ) : (
         <button className="login-button" onClick={() => setIsOpen(!isOpen)}>Login</button>
       )}
-      {isOpen && (
-        <div className="login-form">
-          <h2>Login</h2>
+      <div className={`login-form ${isOpen ? "open" : ""}`}>
+        <div className="login-left">
+          <img src="/assets/login-bg.png" alt="Login Illustration" className="login-image" />
+          <p className="login-text">Login your Account to get full User Experience</p>
+        </div>
+        <div className="login-right">
+          <h2>Hello! <span className="greeting">Good Morning</span></h2>
+          <h3>Login <span className="bold-text">your account</span></h3>
           <form onSubmit={showPasswordField ? handleLogin : handleUsernameSubmit}>
             {!showPasswordField ? (
               <>
@@ -69,6 +74,7 @@ function LoginAccordion() {
                     required
                   />
                 </div>
+                <p className="forgot-link">Forget ID?</p>
                 {submitted && (
                   <p className={`id-confirmation ${showConfirmation ? "show-confirmation" : ""}`}>
                     ✅ 확인되었습니다!
@@ -76,26 +82,27 @@ function LoginAccordion() {
                 )}
               </>
             ) : (
-              <div className="input-group fade-in">
-                <FaLock className="icon" />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
+              <>
+                <div className="input-group fade-in">
+                  <FaLock className="icon" />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <p className="forgot-link">Forget Password?</p>
+              </>
             )}
             <button type="submit" className="submit-button">
-              {showPasswordField ? "Sign In" : "Next"}
+              {showPasswordField ? "Login" : "Next"}
             </button>
-            {showPasswordField && showConfirmation && (
-              <p className="id-confirmation show-confirmation">✅ 확인되었습니다!</p>
-            )}
+            <p className="create-account">Create Account</p>
           </form>
         </div>
-      )}
+      </div>
     </div>
   );
 }

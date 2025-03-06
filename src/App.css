@@ -1,124 +1,156 @@
-/* ✅ 기존 레이아웃 유지 */
+/* ✅ 전체 컨테이너 */
 .Top_Container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  /* FadeIn 애니메이션 주기 위한 투명도 0 세팅 */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #f8f9fa; /* ✅ 기본 배경 (라이트 모드) */
+    transition: background 0.3s ease-in-out;
+    z-index: 1;  /* ✅ 기본값 */
 }
 
-.Top_Container.fade-in {
-  opacity: 1;
-  transform: translateY(0);
+/* ✅ 전체 컨테이너 다크모드 적용 */
+body.dark-mode .Top_Container {
+    background-color: #121212; /* ✅ 다크 모드 배경 */
 }
 
-/* ✅ Header 컨테이너 */
+/* ✅ 헤더는 z-index 100 */
 .Header_Container {
-  width: 100%;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
-/* ✅ Main 레이아웃 (Sidebar + MainContent 포함) */
-.Main_Container {
-  display: flex;
-  flex: 1;
-  gap: 20px;
-  padding: 20px;
-}
-
-/* ✅ Sidebar 스타일 */
+/* ✅ 사이드바는 헤더 + 메인 컨테이너 위 */
 .Sidebar_Container {
-  width: 250px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: flex-start;
+    position: fixed;
+    left: -250px;
+    top: 0;
+    height: 100%;
+    z-index: 200;
 }
 
+/* ✅ 메인 컨테이너 (사이드바 너비 포함) */
+.Main_Container {
+    display: flex;
+    flex: 1;
+    gap: 15px;
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+/* ✅ 메인 컨텐츠 확장 */
 .MainContent_Container {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-/* ✅ 캐러셀 & Stats 전체 컨테이너 (가로 배치) */
+/* ✅ AboutMeContainer (캐러셀 + Stats) */
 .AboutMeContainer {
-  display: flex;
-  justify-content: space-between; /* ✅ 좌우 배치 */
-  align-items: flex-start; /* ✅ 상단 정렬 */
-  gap: 20px;
-  width: 100%;
-  padding: 20px;
-  grid-template-columns: 60% 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    max-width: 100%;
 }
 
-/* ✅ Stats 섹션 (StatsGrid + 간트차트) */
-.Stats_Section,
-.Intro_Carousel {
-  flex: 1;
-  min-width: 400px;
-  max-width: 50%;
+/* ✅ 캐러셀 & Stats 가로 정렬 */
+.Intro_Carousel,
+.Stats_Section {
+    flex: 1;
+    min-width: 450px;
+    max-width: 50%;
 }
 
-/* ✅ StatsGrid 가로 정렬 */
+/* ✅ StatsGrid (화면 크기에 따라 자동 조정) */
 .StatsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
 }
 
-/* ✅ 간트 차트 스타일 */
-.StatsGanttContainer {
-  width: 100%;
-  height: 250px;
-}
-
-/* ✅ TechChart와 TechNetwork 가로 정렬 */
+/* ✅ TechChart와 TechNetwork (가로 배치) */
 .chart {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
-.chart > * {
-  flex: 1;
-  min-width: 400px;
-  max-width: 50%;
+.Tech_chart,
+.Tech_Network {
+    flex: 1;
+    min-width: 450px;
+    max-width: 50%;
 }
 
-/* ✅ 다크모드 스타일 */
-body.dark-mode {
-  background-color: #121212;
-  color: #f8f9fa;
+/* ✅ 반응형 적용 */
+
+/* 📌 1024px 이하 → 사이드바 버튼 추가 */
+@media (max-width: 1024px) {
+    .Sidebar_Container {
+        display: block; /* ✅ 토글 가능하도록 변경 */
+        width: 250px;
+        position: fixed;
+        left: -250px; /* ✅ 기본적으로 숨김 */
+        top: 0;
+        height: 100%;
+        background: #222;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar-open {
+        margin-left: 250px; /* ✅ 사이드바가 열리면 메인컨텐츠 밀림 */
+    }
 }
 
-body.dark-mode .Header_Container {
-  background-color: #1e1e1e;
-}
-
-body.dark-mode .Sidebar_Container {
-  background-color: #252525;
-}
-
-body.dark-mode .MainContent_Container {
-  background-color: #1e1e1e;
-}
-
-/* ✅ 반응형: 작은 화면에서는 세로 정렬 */
+/* 📌 768px 이하 → 세로 정렬 */
 @media (max-width: 768px) {
-  .AboutMeContainer {
-      flex-direction: column;
-  }
+    .Main_Container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 98vw;
+    }
 
-  .StatsGrid {
-      grid-template-columns: repeat(2, 1fr);
-  }
+    .Sidebar_Container {
+        display: none;
+    }
+
+    .MainContent_Container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* 📌 AboutMeContainer 세로 정렬 */
+    .AboutMeContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 📌 Chart 컨테이너 세로 정렬 */
+    .chart {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 📌 StatsGrid 4*1 세로 정렬 */
+    .StatsGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

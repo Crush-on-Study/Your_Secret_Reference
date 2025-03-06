@@ -1,141 +1,112 @@
-/* 기본 사이드바 스타일 */
+/* ✅ 기본 사이드바 스타일 */
 .sidebar {
     width: 250px;
-    background: #dfffe0; /* 연두색 컬러 적용 */
+    background: rgba(255, 255, 255, 0.65); /* ✅ 연두색 + 투명도 적용 */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    font-family: Arial, sans-serif;
     color: #333;
-    transition: background 0.3s, color 0.3s;
+    position: fixed;
+    left: -260px; /* ✅ 기본적으로 숨김 */
+    top: 0;
+    height: 100%;
+    transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    z-index: 1000;
 }
 
-/* 다크모드 적용 */
+/* ✅ 다크모드 스타일 */
 .sidebar.dark-mode {
-    background: #c6a5ff; /* 연보라 컬러 적용 */
+    background: rgba(81, 79, 85, 0.85); /* ✅ 연보라 + 투명도 */
     color: #e0e0e0;
 }
 
-/* 프로필 섹션 */
-.profile-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+/* ✅ 사이드바가 열릴 때 */
+.sidebar.open {
+    left: 0;
+    opacity: 1;
 }
 
-.profile-img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: 3px solid #a3e4a1;
-}
-
-.sidebar.dark-mode .profile-img {
-    border: 3px solid #9c7cd4;
-}
-
-.profile-text {
-    flex-grow: 1;
-}
-
-.nickname {
-    font-size: 18px;
-    font-weight: bold;
-    color: #388e3c;
-}
-
-.real-name {
-    font-size: 14px;
-    color: #555;
-}
-
-.sidebar.dark-mode .real-name {
-    color: #bbb;
-}
-
-/* 경력 섹션 */
-.career-section {
-    background: #c8ffb0;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    color: #333;
-}
-
-.sidebar.dark-mode .career-section {
-    background: #b28eff;
-}
-
-/* 방문자 수 */
-.visitor-section {
-    font-size: 14px;
-    background: #b2e6b3;
-    padding: 8px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar.dark-mode .visitor-section {
-    background: #a07be1;
-}
-
-/* 연락처 */
-.contact-section {
-    margin-bottom: 15px;
-    font-size: 14px;
-    color: #333;
-}
-
-.contact-section .icon {
-    margin-right: 5px;
-    color: #388e3c;
-}
-
-.sidebar.dark-mode .contact-section .icon {
-    color: #ddd;
-}
-
-/* 외부 링크 */
-.links-section {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.link-btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background: #57c84d;
+/* ✅ 사이드바 토글 버튼 */
+.sidebar-toggle {
+    position: fixed;
+    top: 3%;
+    left: 0;
+    transform: translateY(-50%);
+    background: rgba(169, 235, 153, 0.9);
     color: white;
-    font-size: 14px;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: 0 5px 5px 0;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar-toggle:hover {
+    background: rgb(184, 179, 231);
+}
+
+/* ✅ 아코디언 스타일 */
+.sidebar-section {
+    margin-bottom: 10px;
+}
+
+.accordion-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 16px;
     padding: 10px;
-    border-radius: 5px;
-    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s ease;
     font-weight: bold;
-    transition: 0.3s;
-    gap: 10px;
 }
 
-.link-btn:hover {
-    background: #43a047;
+.accordion-header:hover {
+    background: rgba(0, 0, 0, 0.1);
 }
 
-.sidebar.dark-mode .link-btn {
-    background: #7e5bd4;
+.sidebar.dark-mode .accordion-header {
+    color: white;
 }
 
-.sidebar.dark-mode .link-btn:hover {
-    background: #6c4acb;
+.sidebar.dark-mode .accordion-header:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.link-icon {
-    width: 24px; /* 아이콘 크기 조절 */
-    height: 24px;
+/* ✅ 아코디언 내용 */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+.accordion-content.open {
+    max-height: 300px;
+    opacity: 1;
+    padding: 10px;
+}
+
+/* ✅ 반응형 적용 */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+        left: -230px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
 }

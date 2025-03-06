@@ -7,7 +7,6 @@ import TechChart from "./Component_MainContent/Tech_Chart";
 import TechNetwork from "./Component_MainContent/Tech_Network";
 import CareerSection from "./Component_MainContent/CareerSection";
 import IntroCarousel from "./Component_MainContent/IntroCarousel";
-import ScrollSpy from "./Component_Common/ScrollSpy";
 import LoadingScreen from "./Component_Loading/LoadingScreen";
 import Footer from "./Component_Footer/Footer";
 import StatsGrid from "./Component_MainContent/StatsGrid";
@@ -25,7 +24,6 @@ import "./App.css";
 function Home() {
   return (
     <div className="MainContent_Container">
-      
       {/* ✅ 캐러셀 + Stats 컨테이너 가로 정렬 */}
       <div className="AboutMeContainer">
         <div className="Intro_Carousel">
@@ -57,6 +55,7 @@ function Home() {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [fadeIn, setFadeIn] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // ✅ 사이드바 상태 추가
 
   useEffect(() => {
     setTimeout(() => {
@@ -80,13 +79,11 @@ function App() {
 
             <div className="Main_Container">
               
-              {/* ✅ Sidebar */}
-              <div className="Sidebar_Container">
-                <Sidebar />
-              </div>
+              {/* ✅ Sidebar (열고 닫기 상태 전달) */}
+              <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
               {/* ✅ Main Content */}
-              <div className="MainContent_Container">
+              <div className={`MainContent_Container ${isSidebarOpen ? "sidebar-open" : ""}`}>
                 <Routes>
                   
                   {/* ✅ Default Home */}
@@ -101,8 +98,6 @@ function App() {
 
                 </Routes>
               </div>
-
-              <ScrollSpy />
             </div>
 
             <Footer />

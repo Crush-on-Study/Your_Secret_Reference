@@ -6,69 +6,110 @@
     position: absolute;
     top: 10px;
     right: 80px;
-    z-index: 1000;
+    z-index: 9999;  /* ✅ 최상위 배치 */
     gap: 10px;
     margin-right: 15px;
 }
 
 /* 로그인 버튼 스타일 */
 .login-button {
-    width: 70px; /* 버튼 크기 조정 */
-    height: 34px;
+    width: 80px;
+    height: 36px;
     display: flex;
     align-items: center;
-    justify-content: center; /* 중앙 정렬 */
+    justify-content: center;
     border-radius: 20px;
     font-size: 14px;
-    font-family: 'Poppins', sans-serif; /* 폰트 적용 */
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     text-align: center;
-}
-
-.dark-mode .login-button {
-    background: #c6a5ff;
+    background: linear-gradient(90deg, #ace0aa, #00d2ff);
     color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .login-button:hover {
-    background: #b2e6b3;
-}
-
-.dark-mode .login-button:hover {
-    background: #a07be1;
+    background: linear-gradient(90deg, #6a49e0, #00b8d4);
 }
 
 /* 로그인 폼 스타일 */
 .login-form {
-    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
     padding: 20px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
     text-align: center;
-    margin-top: 10px;
-    width: 300px;
+    width: 500px;
     position: absolute;
     top: 50px;
     right: 0;
-    z-index: 1000;
+    z-index: 9999;  /* ✅ 최상위 배치 */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.login-form h2 {
+/* 로그인 폼이 열릴 때 */
+.login-form.open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 로그인 좌측 */
+.login-left {
+    width: 50%;
+    padding: 15px;
+}
+
+.login-image {
+    width: 100%;
+}
+
+.login-text {
+    font-size: 12px;
+    color: gray;
+}
+
+/* 로그인 우측 */
+.login-right {
+    width: 50%;
+    padding: 15px;
+    text-align: left;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: bold;
     color: black;
-    font-size: 20px;
-    margin-bottom: 15px;
 }
 
-/* 입력 필드 그룹 */
+.greeting {
+    color: #7a57ff;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.bold-text {
+    font-weight: 600;
+}
+
+/* 입력 필드 */
 .input-group {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.4);
     padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
     transition: opacity 0.5s ease-in-out;
+    border-bottom: 2px solid rgba(0, 128, 255, 0.6);
 }
 
 .input-group .icon {
@@ -85,48 +126,49 @@
     color: black;
 }
 
-/* ID 확인 메시지 */
-.id-confirmation {
-    color: #32cd32;
-    font-size: 14px;
-    margin-top: 5px;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-.show-confirmation {
-    opacity: 1;
-}
-
-/* 페이드 효과 */
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* 포겟 아이디 & 패스워드 */
+.forgot-link {
+    font-size: 12px;
+    color: #7a57ff;
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: 10px;
 }
 
 /* 로그인 제출 버튼 */
 .submit-button {
-    background: white;
-    color: #7a57ff;
+    background: linear-gradient(90deg, #7a57ff, #00d2ff);
+    color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 20px;
+    border-radius: 25px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s, color 0.3s;
+    transition: 0.3s;
 }
 
 .submit-button:hover {
-    background: #e0e0e0;
+    background: linear-gradient(90deg, #6a49e0, #00b8d4);
+}
+
+/* 계정 생성 */
+.create-account {
+    font-size: 14px;
+    color: #7a57ff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+    .login-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .login-left, .login-right {
+        width: 100%;
+        text-align: center;
+    }
 }
