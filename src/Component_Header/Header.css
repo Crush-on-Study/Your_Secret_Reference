@@ -72,7 +72,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 1051; /* ✅ 네비게이션을 헤더보다 위에 */
+    z-index: 1051;
 }
 
 .nav-menu ul {
@@ -82,6 +82,39 @@
     background: rgba(0, 0, 0, 0.2);
     padding: 10px 20px;
     border-radius: 20px;
+}
+
+/* ✅ 기본 GNB 스타일 */
+.nav-menu .nav-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+/* ✅ 호버 효과 */
+.nav-menu .nav-link:hover {
+    color: #ff5c5c;
+}
+
+/* ✅ 현재 선택된 GNB 항목 (라이트 모드) */
+.light-mode .nav-menu .nav-link.active {
+    background: #ff5c5c;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 현재 선택된 GNB 항목 (다크 모드) */
+.dark-mode .nav-menu .nav-link.active {
+    background: #ffb400;
+    color: #222;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.2);
 }
 
 .nav-menu a {

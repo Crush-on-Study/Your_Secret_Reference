@@ -24,12 +24,20 @@
     margin-top: 5px;
 }
 
-/* ✅ 설명 텍스트 */
-.StatsTitle {
+/* ✅ 설명 텍스트 (라이트 모드) */
+.light-mode .StatsTitle {
     font-size: 14px;
     font-weight: 500;
-    color: #f1f1f1;
+    color: #5e4d4d; /* ✅ 기존 색상 유지 */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 설명 텍스트 (다크 모드) */
+.dark-mode .StatsTitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f0e6e6; /* ✅ 밝은 색상으로 변경 */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* ✅ 다크 모드에서 가독성 추가 */
 }
 
 

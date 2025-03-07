@@ -21,11 +21,20 @@
     color: #f8f9fa;
 }
 
-/* ✅ 제목 스타일 */
-.intro-text h2 {
+/* ✅ 제목 스타일 (라이트 모드) */
+.light-mode .intro-text h2 {
     font-size: 24px;
     margin-bottom: 10px;
+    color: #222; /* ✅ 기본 어두운 글자색 */
 }
+
+/* ✅ 제목 스타일 (다크 모드) */
+.dark-mode .intro-text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #f0e6e6; /* ✅ 다크 모드에서 밝은 색상 적용 */
+}
+
 
 /* ✅ 일반 텍스트 */
 .intro-text p {

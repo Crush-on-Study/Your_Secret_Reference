@@ -13,6 +13,7 @@ import StatsGrid from "./Component_MainContent/StatsGrid";
 import StatsGanttChart from "./Component_MainContent/StatsGanttChart";
 import ProjectList from "./Component_MainContent/ProjectList";
 // import CustomCursor from "./Component_Common/CustomCursor";
+import PostNewsList from "./Component_MainContent/PostNewsList";
 
 // Back 관련 Import 리스트
 import Database from "./Component_MainContent/Component_Database/Database";
@@ -103,8 +104,13 @@ function App() {
 
                 </Routes>
               </div>
-            </div>
 
+              
+            </div>
+            {/* Post랑 IT News 리스트업 */}
+            <div className="oh">
+                <PostNewsList />
+            </div>
             <Footer />
           </div>
         </Router>

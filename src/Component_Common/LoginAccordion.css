@@ -10,8 +10,8 @@
     gap: 0; /* ✅ 간격 제거 */
 }
 
-/* 로그인 버튼 스타일 */
-.login-button {
+/* ✅ 로그인 버튼 (라이트 모드) */
+.light-mode .login-button {
     width: 80px;
     height: 36px;
     display: flex;
@@ -22,16 +22,40 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     text-align: center;
-    background: linear-gradient(90deg, #ace0aa, #00d2ff);
-    color: white;
+    background: linear-gradient(90deg, #ace0aa, #00d2ff); /* ✅ 밝은 색상 */
+    color: black;
     border: none;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.login-button:hover {
+.light-mode .login-button:hover {
     background: linear-gradient(90deg, #6a49e0, #00b8d4);
 }
+
+/* ✅ 로그인 버튼 (다크 모드) */
+.dark-mode .login-button {
+    width: 80px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(90deg, #ff9800, #ff3d00); /* ✅ 다크모드에서는 따뜻한 색상 (오렌지 → 레드) */
+    color: #222; /* ✅ 다크 모드에서 대비되는 어두운 텍스트 */
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dark-mode .login-button:hover {
+    background: linear-gradient(90deg, #ff6f00, #d50000); /* ✅ 호버 시 더 진한 색상 */
+}
+
 
 /* ✅ 로그인 폼 스타일 */
 .login-form {
