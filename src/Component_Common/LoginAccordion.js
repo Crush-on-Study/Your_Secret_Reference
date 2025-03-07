@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LoginAccordion.css";
+import SignUpModal from "./SignUpModal"; // ✅ 회원가입 모달 추가
 import { FaUser, FaLock } from "react-icons/fa";
 
 function LoginAccordion() {
@@ -11,6 +12,7 @@ function LoginAccordion() {
   const [submitted, setSubmitted] = useState(false);
   const [fadeOutUsername, setFadeOutUsername] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false); // ✅ 회원가입 모달 상태 추가
 
   const handleUsernameSubmit = (e) => {
     e.preventDefault();
@@ -55,11 +57,10 @@ function LoginAccordion() {
       )}
       <div className={`login-form ${isOpen ? "open" : ""}`}>
         <div className="login-left">
-          <img src="/assets/login-bg.png" alt="Login Illustration" className="login-image" />
-          <p className="login-text">Login your Account to get full User Experience</p>
+          <img src="/assets/Component_LoginAccordian_sign.webp" alt="Login Illustration" className="login-image" />
         </div>
         <div className="login-right">
-          <h2>Hello! <span className="greeting">Good Morning</span></h2>
+          <h2>Hello! <span className="greeting">Good 2 C U</span></h2>
           <h3>Login <span className="bold-text">your account</span></h3>
           <form onSubmit={showPasswordField ? handleLogin : handleUsernameSubmit}>
             {!showPasswordField ? (
@@ -99,10 +100,15 @@ function LoginAccordion() {
             <button type="submit" className="submit-button">
               {showPasswordField ? "Login" : "Next"}
             </button>
-            <p className="create-account">Create Account</p>
+
+            {/* ✅ 회원가입 모달을 열기 위한 버튼 */}
+            <p className="create-account" onClick={() => setIsSignUpOpen(true)}>Create Account</p>
           </form>
         </div>
       </div>
+
+      {/* ✅ 회원가입 모달 추가 */}
+      <SignUpModal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} />
     </div>
   );
 }

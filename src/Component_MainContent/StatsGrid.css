@@ -50,6 +50,13 @@
     transition: transform 0.3s ease-in-out;
     background: linear-gradient(135deg, rgba(255, 168, 76, 0.8), rgba(255, 76, 109, 0.8));
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: glowEffect 5s infinite alternate;
+}
+
+/* ✅ 그라데이션 애니메이션 효과 (조절된 밝기) */
+@keyframes glowEffect {
+    0% { filter: brightness(100%); }
+    100% { filter: brightness(120%); }
 }
 
 /* ✅ 카드 컬러 */
@@ -69,6 +76,7 @@ body.dark-mode .stats-card-0 { background: linear-gradient(135deg, #3a1c71, #d76
 body.dark-mode .stats-card-1 { background: linear-gradient(135deg, #232526, #414345); }
 body.dark-mode .stats-card-2 { background: linear-gradient(135deg, #4b6cb7, #182848); }
 body.dark-mode .stats-card-3 { background: linear-gradient(135deg, #ff7eb3, #ff758c); }
+
 
 
 /* 📌 1200px 이하 → 2x2 배치 */

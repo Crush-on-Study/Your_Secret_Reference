@@ -4,13 +4,15 @@ import { ThemeProvider } from "./Component_Common/ThemeContext";
 import Header from "./Component_Header/Header";
 import Sidebar from "./Component_Sidebar/Sidebar";
 import TechChart from "./Component_MainContent/Tech_Chart";
-import TechNetwork from "./Component_MainContent/Tech_Network";
+import TechDetails from "./Component_MainContent/TechDetails";
 import CareerSection from "./Component_MainContent/CareerSection";
 import IntroCarousel from "./Component_MainContent/IntroCarousel";
 import LoadingScreen from "./Component_Loading/LoadingScreen";
 import Footer from "./Component_Footer/Footer";
 import StatsGrid from "./Component_MainContent/StatsGrid";
 import StatsGanttChart from "./Component_MainContent/StatsGanttChart";
+import ProjectList from "./Component_MainContent/ProjectList";
+// import CustomCursor from "./Component_Common/CustomCursor";
 
 // Back 관련 Import 리스트
 import Database from "./Component_MainContent/Component_Database/Database";
@@ -27,11 +29,13 @@ function Home() {
       {/* ✅ 캐러셀 + Stats 컨테이너 가로 정렬 */}
       <div className="AboutMeContainer">
         <div className="Intro_Carousel">
+        <StatsGanttChart />
           <IntroCarousel />
+          
         </div>
         <div className="Stats_Section">
           <StatsGrid />
-          <StatsGanttChart />
+          <ProjectList />
         </div>
       </div>
 
@@ -40,8 +44,8 @@ function Home() {
         <div className="Tech_chart">
           <TechChart />
         </div>
-        <div className="Tech_Network">
-          <TechNetwork />
+        <div className="Tech_Detail">
+          <TechDetails />
         </div>
       </div>
 
@@ -66,12 +70,13 @@ function App() {
 
   return (
     <ThemeProvider>
+        
       {isLoading ? (
         <LoadingScreen onComplete={() => setIsLoading(false)} />
       ) : (
         <Router>
           <div className={`Top_Container ${fadeIn ? "fade-in" : ""}`}>
-            
+            {/* <CustomCursor /> */}
             {/* ✅ Header */}
             <div className="Header_Container">
               <Header />

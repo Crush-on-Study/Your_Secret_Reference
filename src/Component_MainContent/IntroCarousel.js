@@ -68,9 +68,10 @@ const IntroCarousel = () => {
           <strong>Look around a lot of things on my site!</strong>
         </p>
       </div>
-
+      <h2>My Toy Project List</h2>
       {/* 프로젝트 캐러셀 */}
-      <Slider {...settings} className="carousel">
+      <Slider 
+      {...settings} className="carousel">
         {projects.map((project, index) => (
           <div key={index} className="carousel-item">
             <img src={project.image} alt={project.title} className="carousel-image" />

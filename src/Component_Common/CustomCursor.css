@@ -1,0 +1,44 @@
+✅ 기본 마법봉 커서
+.magic-wand {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    background: url("/public/assets/Component_Common_Mouse.png") no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-in-out;
+}
+
+/* ✅ 기본 커서 숨기기 */
+body {
+    cursor: none;
+}
+
+/* ✅ 클릭 시 폭죽 효과 */
+.firework {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 204, 0, 0.8) 20%, rgba(255, 0, 0, 0.8) 80%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explode 0.5s ease-out forwards;
+}
+
+/* ✅ 폭죽 애니메이션 */
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}

@@ -15,21 +15,52 @@ body.dark-mode .Top_Container {
     background-color: #121212; /* ✅ 다크 모드 배경 */
 }
 
-/* ✅ 헤더는 z-index 100 */
+/* ✅ 헤더는 z-index 1050 */
 .Header_Container {
     position: sticky;
     top: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1050; /* ✅ 헤더를 다른 요소보다 높게 배치 */
 }
 
-/* ✅ 사이드바는 헤더 + 메인 컨테이너 위 */
+/* ✅ 사이드바는 최상위 배치 (z-index: 1103) */
 .Sidebar_Container {
     position: fixed;
     left: -250px;
     top: 0;
     height: 100%;
-    z-index: 200;
+    z-index: 1; /* ✅ 사이드바가 모든 요소 위로 배치됨 */
+    background: #222;
+    transition: left 0.3s ease;
+}
+
+/* ✅ 사이드바가 열리면 화면에 나타나도록 설정 */
+.sidebar-open {
+    left: 0;
+}
+
+/* ✅ 사이드바 토글 버튼 (z-index: 1104) */
+.Sidebar_ToggleButton {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    background: #7a57ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1104; /* ✅ 모든 요소보다 최상위 */
+    transition: background 0.3s;
+}
+
+.Sidebar_ToggleButton:hover {
+    background: #6a49e0;
 }
 
 /* ✅ 메인 컨테이너 (사이드바 너비 포함) */
@@ -42,6 +73,7 @@ body.dark-mode .Top_Container {
     width: 100%;
     margin: auto;
     overflow-x: hidden;
+    z-index: 1;
 }
 
 /* ✅ 메인 컨텐츠 확장 */
@@ -62,6 +94,7 @@ body.dark-mode .Top_Container {
     gap: 15px;
     width: 100%;
     max-width: 100%;
+    z-index: 1;
 }
 
 /* ✅ 캐러셀 & Stats 가로 정렬 */
@@ -93,7 +126,7 @@ body.dark-mode .Top_Container {
 }
 
 .Tech_chart,
-.Tech_Network {
+.Tech_Detail {
     flex: 1;
     min-width: 450px;
     max-width: 50%;
@@ -104,18 +137,19 @@ body.dark-mode .Top_Container {
 /* 📌 1024px 이하 → 사이드바 버튼 추가 */
 @media (max-width: 1024px) {
     .Sidebar_Container {
-        display: block; /* ✅ 토글 가능하도록 변경 */
+        display: block;
         width: 250px;
         position: fixed;
-        left: -250px; /* ✅ 기본적으로 숨김 */
+        left: -250px;
         top: 0;
         height: 100%;
         background: #222;
         transition: left 0.3s ease;
+        z-index: 1103; /* ✅ 모바일에서도 사이드바가 최상위 유지 */
     }
 
-    .sidebar-open {
-        margin-left: 250px; /* ✅ 사이드바가 열리면 메인컨텐츠 밀림 */
+    .Sidebar_ToggleButton {
+        display: flex; /* ✅ 모바일에서 버튼 항상 표시 */
     }
 }
 

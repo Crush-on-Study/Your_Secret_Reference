@@ -1,0 +1,63 @@
+/* ✅ TechDetails 컨테이너 */
+.tech-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background: none;
+}
+
+/* ✅ 타이틀 스타일 */
+.tech-details-container h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* ✅ 개별 기술 아이템 */
+.tech-item {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    background: none;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+}
+
+/* ✅ 기술 아이콘 */
+.tech-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* ✅ 기술 설명 */
+.tech-description {
+    margin: 0;
+    font-size: 16px;
+    color: #444;
+}
+
+/* ✅ 경험 강조 */
+.tech-experience {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* ✅ 다크모드 스타일 */
+body.dark-mode .tech-details-container h2 {
+    color: gold; /* ⭐ 다크모드에서는 노란색 제목 */
+}
+
+body.dark-mode .tech-item {
+    border-bottom: 1px solid #555; /* ✅ 구분선 색상 변경 */
+}
+
+body.dark-mode .tech-description {
+    color: gold; /* ✅ 설명 텍스트도 노란색 */
+}
+
+body.dark-mode .tech-experience {
+    color: orange; /* ✅ 경험 강조 색상을 주황색 계열로 변경 */
+}

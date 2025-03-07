@@ -28,9 +28,6 @@ body.dark-mode .new-post-btn:hover {
     background: #666;
 }
 
-
-
-
 /* ✅ Editor 전체 컨테이너 */
 .editor-container {
     background: #f8f9fa;
@@ -42,8 +39,9 @@ body.dark-mode .new-post-btn:hover {
 
 /* ✅ 다크모드 적용 */
 body.dark-mode .editor-container {
-    background: #252525;
+    background: #181818;
     color: #f8f9fa;
+    border: 1px solid #444;
 }
 
 /* ✅ Quill 에디터 스타일 */
@@ -116,9 +114,9 @@ body.dark-mode .editor-container input[type="text"] {
 /* ✅ 다크모드에서 버튼 */
 body.dark-mode .editor-container button {
     background: #444;
+    color: #f8f9fa;
 }
 
 body.dark-mode .editor-container button:hover {
     background: #666;
 }
-

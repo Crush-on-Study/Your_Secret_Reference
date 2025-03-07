@@ -1,109 +1,111 @@
-/* 모달 백그라운드 오버레이 */
+/* ✅ 모달 오버레이 */
 .signup-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
-    backdrop-filter: blur(10px); /* 흐림 효과 */
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    animation: fadeIn 0.3s forwards;
+    align-items: center;
+    z-index: 1102;
 }
 
-/* 모달 컨테이너 */
+/* ✅ 모달 컨테이너 (다크모드/라이트모드) */
 .signup-modal {
-    background: rgba(255, 255, 255, 0.15);
     padding: 20px;
     border-radius: 10px;
-    width: 350px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 500px;
     text-align: center;
-    position: relative;
-    animation: scaleUp 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 
-/* 제목 */
-.signup-modal h2 {
-    font-size: 22px;
+/* ✅ 다크모드 & 라이트모드 스타일 */
+.signup-modal.light-mode {
+    background: white;
+    color: black;
+}
+
+.signup-modal.dark-mode {
+    background: #222;
     color: white;
+}
+
+/* ✅ 브레드스크럼 */
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
-/* 입력 필드 그룹 */
-.signup-input-group {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.3);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: opacity 0.3s ease-in-out;
+.breadcrumb span {
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #ddd;
+    font-size: 14px;
 }
 
-.signup-input-group .icon {
-    margin-right: 10px;
+.breadcrumb .active {
+    background: #7a57ff;
     color: white;
 }
 
-.signup-input-group input {
+/* ✅ 회원가입 컨테이너 (왼쪽 이미지 + 오른쪽 입력 필드) */
+.signup-container {
+    display: flex;
+    align-items: center;
+}
+
+/* ✅ 왼쪽 이미지 */
+.signup-left {
+    flex: 1;
+    padding: 10px;
+}
+
+.signup-image {
+    width: 100%;
+}
+
+/* ✅ 오른쪽 입력 폼 */
+.signup-right {
+    flex: 1;
+    padding: 10px;
+}
+
+/* ✅ 입력 필드 */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.input-group .icon {
+    margin-right: 10px;
+}
+
+.input-group input {
     border: none;
-    background: transparent;
     outline: none;
     flex-grow: 1;
     font-size: 16px;
-    color: white;
 }
 
-/* 제출 버튼 */
-.signup-submit-button {
-    background: white;
-    color: #7a57ff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
+/* ✅ 버튼 */
+.next-button, .prev-button, .signup-button, .close-button {
+    padding: 10px;
+    border-radius: 5px;
     width: 100%;
+    cursor: pointer;
     margin-top: 10px;
 }
 
-.signup-submit-button:hover {
-    background: #e0e0e0;
-}
-
-/* 닫기 버튼 */
-.signup-close-button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 18px;
-    color: white;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.signup-close-button:hover {
-    color: #ff5c5c;
-}
-
-/* 페이드 인 애니메이션 */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* 스케일 업 애니메이션 */
-@keyframes scaleUp {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
+.next-button { background: #7a57ff; color: white; }
+.prev-button { background: #ccc; }
+.signup-button { background: #28a745; color: white; }
+.close-button { background: #aaa; }

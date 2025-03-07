@@ -12,9 +12,10 @@
     background-position: center;
     transition: background 0.5s ease-in-out;
     overflow: hidden;
+    z-index: 1050; /* ✅ 헤더를 충분히 위로 배치 */
 }
 
-/* ✅ 헤더 오버레이 (암호화폐 배경 효과) */
+/* ✅ 헤더 오버레이 */
 .header-overlay {
     position: absolute;
     top: 0;
@@ -27,12 +28,10 @@
 
 /* ✅ 다크 모드 & 라이트 모드 배경 설정 */
 .light-mode .header {
-    /* background-image: url('/public/assets/Component_Header_light_mode_header.gif'); */
     color: black;
 }
 
 .dark-mode .header {
-    /* background-image: url('/assets/dark-mode-bg.gif'); */
     color: white;
 }
 
@@ -73,7 +72,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 10;
+    z-index: 1051; /* ✅ 네비게이션을 헤더보다 위에 */
 }
 
 .nav-menu ul {
@@ -103,7 +102,7 @@
     justify-content: center;
     margin-top: 20px;
     position: relative;
-    z-index: 10;
+    z-index: 1051; /* ✅ 검색창도 충분히 위에 배치 */
 }
 
 .search-bar {
@@ -141,4 +140,65 @@
 
 .search-button:hover {
     background: #ff3b3b;
+}
+
+/* ✅ 로그인 폼 관련 스타일 수정 */
+.login-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    gap: 10px;
+    margin-right: 15px;
+    z-index: 1100;  /* ✅ 네비게이션보다 위로 배치 */
+}
+
+/* 로그인 버튼 스타일 */
+.login-button {
+    width: 80px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(90deg, #ace0aa, #00d2ff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-button:hover {
+    background: linear-gradient(90deg, #6a49e0, #00b8d4);
+}
+
+/* ✅ 로그인 폼 스타일 */
+.login-form {
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 500px;
+    position: fixed;  /* ✅ absolute → fixed로 변경 */
+    top: 80px;  /* ✅ 헤더 높이 고려 */
+    right: 50px;
+    z-index: 1101;  /* ✅ 가장 위로 배치 */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* 로그인 폼이 열릴 때 */
+.login-form.open {
+    opacity: 1;
+    transform: translateY(0);
 }
