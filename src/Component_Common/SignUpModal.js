@@ -1,19 +1,43 @@
 import React, { useState, useContext } from "react";
 import "./SignUpModal.css";
-import { ThemeContext } from "./ThemeContext"; // ✅ 다크모드/라이트모드 적용
+import { ThemeContext } from "./ThemeContext";
 import { FaArrowLeft, FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { signUp } from "../Infra_Firebase/auth"; // ✅ Firebase 회원가입 연동
 
 function SignUpModal({ isOpen, onClose }) {
-  const { isDarkMode } = useContext(ThemeContext); // ✅ 다크모드 상태 가져오기
-  const [step, setStep] = useState(1); // ✅ 회원가입 진행 단계 (1 → 2 → 3)
+  const { isDarkMode } = useContext(ThemeContext);
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
 
-  if (!isOpen) return null; // 모달이 닫힌 상태라면 렌더링하지 않음
+  if (!isOpen) return null;
 
-  const handleNext = () => setStep(step + 1);
+  const handleNext = () => {
+    if (step === 1 && email.trim() === "") {
+      alert("이메일을 입력해주세요.");
+      return;
+    }
+    if (step === 2 && (password.trim() === "" || password !== confirmPassword)) {
+      alert("비밀번호를 확인해주세요.");
+      return;
+    }
+    setStep(step + 1);
+  };
+
   const handlePrev = () => setStep(step - 1);
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      await signUp(email, password, nickname);
+      alert("✅ 회원가입 성공!");
+      onClose(); // 모달 닫기
+    } catch (error) {
+      alert("❌ 회원가입 실패: " + error.message);
+    }
+  };
 
   return (
     <div className="signup-modal-overlay">
@@ -68,6 +92,8 @@ function SignUpModal({ isOpen, onClose }) {
                   <input 
                     type="password" 
                     placeholder="비밀번호 확인" 
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     required 
                   />
                 </div>
@@ -90,7 +116,7 @@ function SignUpModal({ isOpen, onClose }) {
                   />
                 </div>
                 <button className="prev-button" onClick={handlePrev}><FaArrowLeft /> 이전</button>
-                <button className="signup-button">가입 완료</button>
+                <button className="signup-button" onClick={handleSignUp}>가입 완료</button>
               </>
             )}
 

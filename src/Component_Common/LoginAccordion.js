@@ -1,114 +1,73 @@
 import React, { useState } from "react";
 import "./LoginAccordion.css";
-import SignUpModal from "./SignUpModal"; // ✅ 회원가입 모달 추가
+import { login, logout } from "../Infra_Firebase/auth"; // ✅ 로그인 & 로그아웃 추가
 import { FaUser, FaLock } from "react-icons/fa";
+import useAuth from "../Infra_Firebase/useAuth"; // ✅ 로그인 상태 가져오기
 
 function LoginAccordion() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showPasswordField, setShowPasswordField] = useState(false);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [fadeOutUsername, setFadeOutUsername] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false); // ✅ 회원가입 모달 상태 추가
+  const { user } = useAuth(); // ✅ 로그인 상태 확인
 
-  const handleUsernameSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username.trim() !== "") {
-      setShowConfirmation(true);
-      setSubmitted(true);
-      setTimeout(() => {
-        setShowConfirmation(false);
-        setFadeOutUsername(true);
-        setTimeout(() => {
-          setShowPasswordField(true);
-        }, 500);
-      }, 1500);
+    try {
+      await login(email, password);
+      alert("✅ 로그인 성공!");
+      setIsOpen(false);
+    } catch (error) {
+      alert("❌ 로그인 실패: " + error.message);
     }
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setShowConfirmation(true);
-    setTimeout(() => {
-      setShowConfirmation(false);
-      setIsLoggedIn(true);
-      setIsOpen(false);
-    }, 1500);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUsername("");
-    setPassword("");
-    setShowPasswordField(false);
-    setSubmitted(false);
-    setFadeOutUsername(false);
+  const handleLogout = async () => {
+    await logout();
+    alert("✅ 로그아웃 완료!");
   };
 
   return (
     <div className="login-container">
-      {isLoggedIn ? (
+      {user ? (
         <button className="login-button" onClick={handleLogout}>Logout</button>
       ) : (
         <button className="login-button" onClick={() => setIsOpen(!isOpen)}>Login</button>
       )}
-      <div className={`login-form ${isOpen ? "open" : ""}`}>
-        <div className="login-left">
-          <img src="/assets/Component_LoginAccordian_sign.webp" alt="Login Illustration" className="login-image" />
-        </div>
-        <div className="login-right">
-          <h2>Hello! <span className="greeting">Good 2 C U</span></h2>
-          <h3>Login <span className="bold-text">your account</span></h3>
-          <form onSubmit={showPasswordField ? handleLogin : handleUsernameSubmit}>
-            {!showPasswordField ? (
-              <>
-                <div className={`input-group ${fadeOutUsername ? "fade-out" : ""}`}>
-                  <FaUser className="icon" />
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                  />
-                </div>
-                <p className="forgot-link">Forget ID?</p>
-                {submitted && (
-                  <p className={`id-confirmation ${showConfirmation ? "show-confirmation" : ""}`}>
-                    ✅ 확인되었습니다!
-                  </p>
-                )}
-              </>
-            ) : (
-              <>
-                <div className="input-group fade-in">
-                  <FaLock className="icon" />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <p className="forgot-link">Forget Password?</p>
-              </>
-            )}
-            <button type="submit" className="submit-button">
-              {showPasswordField ? "Login" : "Next"}
-            </button>
 
-            {/* ✅ 회원가입 모달을 열기 위한 버튼 */}
-            <p className="create-account" onClick={() => setIsSignUpOpen(true)}>Create Account</p>
-          </form>
+      {isOpen && !user && (
+        <div className="login-form open">
+          <div className="login-left">
+            <img src="/assets/Component_LoginAccordian_sign.webp" alt="Login Illustration" className="login-image" />
+          </div>
+          <div className="login-right">
+            <h2>Hello! <span className="greeting">Good 2 C U</span></h2>
+            <h3>Login <span className="bold-text">your account</span></h3>
+            <form onSubmit={handleLogin}>
+              <div className="input-group">
+                <FaUser className="icon" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <FaLock className="icon" />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <button type="submit" className="submit-button">Login</button>
+            </form>
+          </div>
         </div>
-      </div>
-
-      {/* ✅ 회원가입 모달 추가 */}
-      <SignUpModal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} />
+      )}
     </div>
   );
 }

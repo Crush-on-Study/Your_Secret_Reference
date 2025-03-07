@@ -1,0 +1,45 @@
+/* 📌 Pagination 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 8px 12px;
+    margin: 0 5px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .pagination button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination .active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+  }
+  
+  /* 🔹 반응형 스타일 (모바일 대응) */
+  @media (max-width: 600px) {
+    .pagination button {
+      padding: 6px 10px;
+      font-size: 12px;
+      margin: 0 3px;
+    }
+  }
+  

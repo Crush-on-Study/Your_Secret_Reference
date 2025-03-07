@@ -1,21 +1,28 @@
 import { useState, useEffect } from "react";
-import { fetchPosts, addPost } from "./firebaseCRUD"; // ✅ 기존 Firestore CRUD
+import { fetchPosts, addPost } from "./firebaseCRUD"; // ✅ Firestore CRUD 함수 가져오기
 
 const usePosts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const loadPosts = async () => {
-      const fetchedPosts = await fetchPosts();
-      setPosts(fetchedPosts);
+    const getPosts = async () => {
+      console.log("🔥 Firestore에서 데이터 가져오는 중...");
+      const data = await fetchPosts();
+      console.log("✅ Firestore에서 불러온 데이터:", data);
+      setPosts(data);
     };
-    loadPosts();
+
+    getPosts();
   }, []);
 
+  // ✅ 새 게시글 추가 함수
   const addNewPost = async (title, content) => {
-    const newPostId = await addPost(title, content, "익명", "/assets/default-thumbnail.jpg");
+    console.log("📌 addNewPost 실행! 제목:", title);
+    const newPostId = await addPost(title, content);
+    
     if (newPostId) {
-      setPosts([{ id: newPostId, title, content, author: "익명", date: new Date().toISOString().split("T")[0], likes: 0, comments: 0, thumbnail: "/assets/default-thumbnail.jpg" }, ...posts]);
+      const newPost = { id: newPostId, title, content };
+      setPosts([...posts, newPost]); // ✅ Firestore에 저장한 후 로컬 상태 업데이트
     }
   };
 
