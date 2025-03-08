@@ -23,12 +23,12 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* ✅ 사이드바 토글 버튼 (화살표) */}
+      {/* ✅ 토글 버튼 (항상 화면 안에 위치) */}
       <button className={`sidebar-toggle ${isSidebarOpen ? "open" : ""}`} onClick={toggleSidebar}>
         {isSidebarOpen ? <FaChevronLeft /> : <FaChevronRight />}
       </button>
 
-      {/* ✅ 사이드바 컨테이너 */}
+      {/* ✅ 사이드바 */}
       <aside className={`sidebar ${isSidebarOpen ? "open" : ""} ${isDarkMode ? "dark-mode" : ""}`}>
         <div className="profile-section">
           <img src={"/assets/Component_Sidebar_profile.png"} alt="Profile" className="profile-img" />
@@ -76,9 +76,8 @@ const Sidebar = () => {
             🔗 외부 링크
           </button>
           <div className={`accordion-content ${openSections["links"] ? "open" : ""}`}>
-            <a href="https://notion.com" target="_blank" rel="noopener noreferrer" className="link-btn">⭐ Notion</a>
-            <a href="https://blog.naver.com/twonkang00" target="_blank" rel="noopener noreferrer" className="link-btn">⭐ Naver Blog</a>
-            <a href="https://github.com/Crush-on-Study" target="_blank" rel="noopener noreferrer" className="link-btn">⭐ GitHub Profile</a>
+            <a href="https://notion.com" className="link-btn">⭐ Notion</a>
+            <a href="https://github.com/Crush-on-Study" className="link-btn">⭐ GitHub</a>
           </div>
         </div>
       </aside>

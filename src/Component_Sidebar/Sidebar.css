@@ -1,55 +1,66 @@
 /* ✅ 기본 사이드바 스타일 */
 .sidebar {
-    width: 250px;
-    background: rgba(255, 255, 255, 0.65); /* ✅ 연두색 + 투명도 적용 */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
     color: #333;
     position: fixed;
-    left: -260px; /* ✅ 기본적으로 숨김 */
-    top: 0;
-    height: 100%;
+    left: -180px; /* 🔹 기본값을 조금 보이도록 설정 */
+    top: 45%;
+    transform: translateY(-50%);
     transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    opacity: 0;
-    z-index: 1103; /* ✅ 최상위 배치 */
+    opacity: 0.9;
+    z-index: 1103;
 }
 
 /* ✅ 다크모드 스타일 */
 .sidebar.dark-mode {
-    background: rgba(81, 79, 85, 0.85); /* ✅ 연보라 + 투명도 */
+    background: rgba(81, 79, 85, 0.95);
     color: #e0e0e0;
 }
 
-/* ✅ 사이드바가 열릴 때 */
+/* ✅ 사이드바 열릴 때 */
 .sidebar.open {
     left: 0;
     opacity: 1;
 }
 
-/* ✅ 사이드바 토글 버튼 (최상위로 배치) */
+/* ✅ 사이드바 열릴 때 토글 버튼 안쪽으로 이동 */
+.sidebar.open .sidebar-toggle {
+    left: 190px; /* 🔹 사이드바 내부로 이동 */
+}
+
+/* ✅ 사이드바 닫힐 때 토글 버튼 원래 위치로 돌아옴 */
+.sidebar-toggle.close {
+    left: 10px; /* 🔹 닫힐 때 사진 속 위치로 돌아감 */
+}
+
+/* ✅ 토글 버튼 (항상 살짝 보이도록 조정) */
 .sidebar-toggle {
     position: fixed;
-    top: 50%;
-    left: 0;
+    top: 34.5%;
     transform: translateY(-50%);
-    background: rgba(169, 235, 153, 0.9);
+    background: linear-gradient(90deg, #ACE0AA, #7ABF7A);
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 12px;
     cursor: pointer;
-    z-index: 1104; /* ✅ 사이드바보다 위로 배치 */
-    border-radius: 0 5px 5px 0;
-    transition: background 0.3s ease-in-out;
+    z-index: 1105;
+    border-radius: 0 10px 10px 0;
+    transition: background 0.3s ease-in-out, left 0.3s ease-in-out;
+    
+    left: 10px;  /* 🔹 기본적으로 화면 안쪽에 살짝 보이도록 */
 }
 
 .sidebar-toggle:hover {
-    background: rgb(184, 179, 231);
+    background: linear-gradient(90deg, #6A49E0, #00B8D4);
 }
 
 /* ✅ 아코디언 스타일 */
 .sidebar-section {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 /* ✅ 아코디언 버튼 */
@@ -57,13 +68,16 @@
     width: 100%;
     background: transparent;
     border: none;
-    color: #333;
-    font-size: 16px;
-    padding: 10px;
+    font-size: 15px;
+    padding: 8px;
     text-align: left;
     cursor: pointer;
-    transition: background 0.3s ease;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
 }
 
 .accordion-header:hover {
@@ -78,38 +92,68 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* ✅ 아코디언 내용 */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
     opacity: 0;
     padding: 0 10px;
-    border-radius: 5px;
-    position: absolute; /* 🔥 부모 제약을 벗어나도록 변경 */
-    left: 100%;  /* 🔥 사이드바 바깥으로 나오도록 */
-    top: 0;
-    width: 250px; /* 원하는 너비 조정 */
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1400;  /* 🔥 아코디언을 모든 요소 중 최상위로 배치 */
 }
 
-
-
-/* ✅ 아코디언 펼칠 때 */
 .accordion-content.open {
-    max-height: 300px;
+    max-height: 200px;
     opacity: 1;
-    padding: 10px;
-    z-index: 1400; /* ✅ 헤더보다 위로 유지 */
-    position: relative;
+    padding: 8px;
 }
 
-/* ✅ 반응형 적용 */
+/* ✅ 프로필 섹션 */
+.profile-section {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.nickname {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.real-name {
+    font-size: 13px;
+    color: gray;
+}
+
+/* ✅ 링크 버튼 */
+.link-btn {
+    display: block;
+    padding: 6px;
+    margin: 5px 0;
+    background: linear-gradient(90deg, #FFD700, #FFAA00);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.link-btn:hover {
+    background: linear-gradient(90deg, #FF8C00, #FF4500);
+}
+
+/* ✅ 반응형 */
 @media (max-width: 1024px) {
     .sidebar {
-        width: 220px;
-        left: -230px;
+        width: 180px;
+        left: -190px;
     }
 
     .sidebar.open {
@@ -117,7 +161,11 @@
     }
 
     .sidebar-toggle {
-        z-index: 1104; /* ✅ 모바일에서도 최상위 유지 */
+        left: 10px;
+    }
+
+    .sidebar.open .sidebar-toggle {
+        left: 180px;
     }
 }
 
@@ -127,6 +175,6 @@
     }
 
     .sidebar-toggle {
-        display: flex; /* ✅ 모바일에서도 항상 버튼 보이도록 */
+        display: flex;
     }
 }

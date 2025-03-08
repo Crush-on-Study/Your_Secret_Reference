@@ -3,15 +3,16 @@ import {
   onAuthStateChanged, 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
-  signOut 
+  signOut ,
+  getAuth
 } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, query, where, doc, getDocs, setDoc } from "firebase/firestore";
 
 // ✅ Firestore에서 관리자 여부 확인 (UID 기반 조회)
 export const checkAdminStatus = async (uid) => {
   try {
     const userRef = doc(db, "users", uid);
-    const userSnap = await getDoc(userRef);
+    const userSnap = await getDocs(userRef);
 
     if (userSnap.data().role === "admin") {
       console.log("✅ Firestore에서 관리자 계정 확인됨!");
@@ -68,21 +69,41 @@ export const logout = async () => {
   }
 };
 
-// ✅ 회원가입 함수 추가
-export const signUp = async (email, password) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    console.log("✅ 회원가입 성공:", userCredential.user);
+// ✅ Firebase 회원가입 함수
+export const signUp = async (email, password, nickname) => {
+  const auth = getAuth();
 
-    // ✅ Firestore에 사용자 데이터 저장
-    await setDoc(doc(db, "users", userCredential.user.uid), {
-      email: email,
-      role: "user" // 기본 역할은 일반 사용자
+  try {
+    // ✅ Firebase Authentication 계정 생성
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    console.log("✅ 회원가입 성공:", user);
+
+    // ✅ Firestore에 사용자 정보 저장 (UID 기반)
+    await setDoc(doc(db, "users", user.uid), {
+      email,
+      nickname,
+      role: "user", // 기본 역할 (관리자는 Firestore에서 직접 설정)
     });
 
-    return userCredential.user;
+    return user;
   } catch (error) {
     console.error("❌ 회원가입 오류:", error.message);
     throw error;
+  }
+};
+
+// ✅ 닉네임 중복 체크 함수 추가
+export const checkNicknameExists = async (nickname) => {
+  try {
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("nickname", "==", nickname));
+    const querySnapshot = await getDocs(q);
+
+    return !querySnapshot.empty; // ✅ 중복된 닉네임이 있으면 true 반환
+  } catch (error) {
+    console.error("❌ 닉네임 중복 체크 오류:", error);
+    return false;
   }
 };

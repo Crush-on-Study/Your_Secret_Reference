@@ -192,13 +192,56 @@ h3 {
     background: linear-gradient(90deg, #6a49e0, #00b8d4);
 }
 
-/* 계정 생성 */
-.create-account {
-    font-size: 14px;
+/* ✅ "Forgot ID?" & "Create Account" 버튼 스타일 */
+.forgot-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.forgot-link {
     color: #7a57ff;
     cursor: pointer;
-    margin-top: 10px;
 }
+
+.create-account {
+    color: #00b8d4;
+    cursor: pointer;
+    font-weight: bold;
+}
+.create-account:hover {
+    text-decoration: underline;
+}
+
+
+/* ✅ Progressive Disclosure Pattern 애니메이션 */
+.id-confirmation {
+    font-size: 14px;
+    color: #00c853;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* ✅ 단계별 부드러운 전환 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* 반응형 */
 @media (max-width: 600px) {
