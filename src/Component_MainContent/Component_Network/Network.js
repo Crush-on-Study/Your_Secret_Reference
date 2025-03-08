@@ -1,58 +1,99 @@
 import React, { useState, useEffect } from "react";
 import usePosts from "../../Infra_Firebase/usePosts";
-import useAuth from "../../Infra_Firebase/useAuth"; // ✅ 관리자 인증 추가
-import PostEditor from "../../Component_Common/PostEditor";
-import Pagination from "../../Component_Common/Pagination";
+import useAuth from "../../Infra_Firebase/useAuth"; // ✅ 관리자 여부 확인 추가
+import PostEditor from "../../Component_Common/PostEditor"; // ✅ 글 작성 컴포넌트 추가
 import "./Network.css";
 
+const DEFAULT_IMAGE = "/assets/Component_MainContent_NoImage.jpg"; // ✅ 기본 이미지
+
 const Network = () => {
-  const { posts, addNewPost } = usePosts();
+  const { posts, addNewPost } = usePosts(); // ✅ Firestore에서 게시글 가져오기 + 추가 기능
   const { user, isAdmin } = useAuth(); // ✅ Firestore에서 관리자 여부 확인
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
-  const [loading, setLoading] = useState(true);
+  const [isEditorOpen, setIsEditorOpen] = useState(false); // ✅ 에디터 표시 여부
 
-  useEffect(() => {
-    if (user !== null) {
-      setLoading(false); // ✅ 로그인 상태가 확인되면 로딩 종료
-    }
-  }, [user, isAdmin]);
+  // ✅ posts가 undefined인 경우 대비
+  if (!posts) return <p>🚀 데이터 로딩 중...</p>;
 
-  console.log("🔥 현재 로그인한 사용자:", user);
-  console.log("🛠️ 관리자 여부:", isAdmin);
+  // ✅ posts가 배열인지 확인 후 처리
+  const totalPages = Math.ceil((posts.length || 0) / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts?.slice(indexOfFirstPost, indexOfLastPost) || [];
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
 
   return (
-    <div className="Network-page">
-      <h2>📡 네트워크 이론</h2>
+    <div className="network-page">
+      <h2>📡 네트워크 게시판</h2>
 
-      {/* ✅ 로그인 상태 로딩 중 */}
-      {loading ? (
-        <p className="loading-message">🔄 로그인 상태 확인 중...</p>
+      {/* ✅ 관리자일 경우 "새 글 등록" 버튼 표시 */}
+      {isAdmin && (
+        <button
+          className="new-post-button"
+          onClick={() => setIsEditorOpen(!isEditorOpen)}
+        >
+          {isEditorOpen ? "✖ 닫기" : "✍ 새 글 등록"}
+        </button>
+      )}
+
+      {/* ✅ 글쓰기 에디터 (관리자만 가능) */}
+      {isAdmin && isEditorOpen && <PostEditor onSubmit={addNewPost} />}
+
+      {/* ✅ 데이터가 로딩 중일 때 표시 */}
+      {posts.length === 0 ? (
+        <p className="loading-message">📢 게시글을 불러오는 중...</p>
       ) : (
         <>
-          {/* ✅ 관리자만 글 작성 가능 */}
-          {isAdmin ? (
-            <PostEditor onSubmit={addNewPost} />
-          ) : (
-            <p className="access-denied">❌ 관리자만 글을 작성할 수 있습니다.</p>
-          )}
-
-          {/* ✅ 게시글 리스트 */}
           <div className="post-list">
-            {posts.length > 0 ? (
-              posts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage).map((post) => (
-                <div key={post.id}>
-                  <h3>{post.title}</h3>
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            {currentPosts.map((post) => (
+              <div key={post.id} className="post-item">
+                <img 
+                  src={post.thumbnail || DEFAULT_IMAGE} 
+                  alt={post.title} 
+                  className="post-thumbnail" 
+                />
+                <div className="post-content">
+                  <h3 className="post-title">{post.title}</h3>
+                  <p className="post-description">
+                    {post.content.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 100)}...
+                  </p>
+                  <div className="post-info">
+                    <span>Crush on Study</span> · <span>{post.createdAt || "날짜 없음"}</span>
+                  </div>
+                  <div className="post-stats">
+                    👍 {post.likes || 0} | 💬 {post.comments || 0}
+                  </div>
                 </div>
-              ))
-            ) : (
-              <p className="empty-message">게시글이 없습니다.</p>
-            )}
+              </div>
+            ))}
           </div>
 
           {/* ✅ 페이지네이션 UI */}
-          <Pagination currentPage={currentPage} totalPages={Math.ceil(posts.length / postsPerPage)} onPageChange={setCurrentPage} />
+          <div className="pagination">
+            <button onClick={handlePrev} disabled={currentPage === 1}>
+              &lt; Previous
+            </button>
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                className={currentPage === i + 1 ? "active" : ""}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button onClick={handleNext} disabled={currentPage === totalPages}>
+              Next &gt;
+            </button>
+          </div>
         </>
       )}
     </div>

@@ -1,122 +1,99 @@
-/* ✅ 새 글 작성 버튼 스타일 */
-.new-post-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background: #007bff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out, transform 0.2s;
-    margin-bottom: 15px;
-}
-
-.new-post-btn:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-}
-
-/* ✅ 다크모드에서 버튼 스타일 */
-body.dark-mode .new-post-btn {
-    background: #444;
-    color: #f8f9fa;
-}
-
-body.dark-mode .new-post-btn:hover {
-    background: #666;
-}
-
-/* ✅ Editor 전체 컨테이너 */
+/* ✅ 에디터 컨테이너 */
 .editor-container {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s, color 0.3s;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* ✅ 다크모드 적용 */
-body.dark-mode .editor-container {
-    background: #181818;
-    color: #f8f9fa;
-    border: 1px solid #444;
+/* ✅ 제목 입력 필드 */
+.title-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* ✅ 포커스 시 강조 효과 */
+.title-input:focus {
+    border-color: #7a57ff;
+    box-shadow: 0 0 8px rgba(122, 87, 255, 0.3);
 }
 
 /* ✅ Quill 에디터 스타일 */
-.ql-container {
-    font-size: 16px;
-    min-height: 500px;
+.quill-editor {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
     background: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
+    border: 2px solid #ddd;
+    transition: 0.3s ease-in-out;
 }
 
-/* ✅ 다크모드에서 Quill 에디터 배경 */
-body.dark-mode .ql-container {
-    background: #1e1e1e;
-    color: #f8f9fa;
-    border: 1px solid #444;
+/* ✅ Quill 에디터 포커스 효과 */
+.quill-editor:hover, .quill-editor:focus-within {
+    border-color: #7a57ff;
+    box-shadow: 0 0 10px rgba(122, 87, 255, 0.3);
 }
 
-/* ✅ Quill 에디터 툴바 */
+/* ✅ 툴바 스타일 변경 */
 .ql-toolbar {
-    background: #eee;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    transition: background 0.3s, color 0.3s;
+    background: #f5f5f5;
+    border-bottom: 2px solid #ddd;
 }
 
-/* ✅ 다크모드 툴바 */
-body.dark-mode .ql-toolbar {
-    background: #333;
-    color: #f8f9fa;
-}
-
-/* ✅ 입력 필드 (제목) */
-.editor-container input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: background 0.3s, color 0.3s;
-}
-
-/* ✅ 다크모드에서 제목 입력 필드 */
-body.dark-mode .editor-container input[type="text"] {
-    background: #252525;
-    color: #f8f9fa;
-    border: 1px solid #444;
-}
-
-/* ✅ 등록 버튼 */
-.editor-container button {
-    display: block;
-    width: 100%;
-    padding: 10px;
+/* ✅ 에디터 내부 스타일 */
+.ql-container {
+    min-height: 200px;
     font-size: 16px;
-    background: #007bff;
+}
+
+/* ✅ 새 글 등록 버튼 */
+.submit-button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
     color: white;
+    background: linear-gradient(90deg, #7a57ff, #00d2ff);
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.3s ease-in-out;
 }
 
-.editor-container button:hover {
-    background: #0056b3;
+/* ✅ 버튼 호버 효과 */
+.submit-button:hover {
+    background: linear-gradient(90deg, #6a49e0, #00b8d4);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* ✅ 다크모드에서 버튼 */
-body.dark-mode .editor-container button {
-    background: #444;
-    color: #f8f9fa;
-}
+/* ✅ 반응형 적용 */
+@media (max-width: 768px) {
+    .editor-container {
+        width: 90%;
+        padding: 15px;
+    }
 
-body.dark-mode .editor-container button:hover {
-    background: #666;
+    .title-input {
+        font-size: 16px;
+    }
+
+    .ql-container {
+        min-height: 150px;
+    }
+
+    .submit-button {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
 }
