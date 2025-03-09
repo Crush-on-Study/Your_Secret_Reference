@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../Component_Common/ThemeContext";
+import { ThemeContext } from "../../Component_Common/ThemeContext";
 import { ResponsiveRadar } from "@nivo/radar";
 import "./Tech_Chart.css";
 

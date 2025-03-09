@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllPosts } from "../Infra_Firebase/firebaseCRUD"; // ✅ Firestore에서 모든 게시글 가져오기
+import { fetchAllPosts } from "../../Infra_Firebase/firebaseCRUD"; // ✅ Firestore에서 모든 게시글 가져오기
 import "./HomePostsList.css"; // ✅ 스타일 파일
 
 const HomePostsList = () => {

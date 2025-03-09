@@ -3,25 +3,32 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./Component_Common/ThemeContext";
 import Header from "./Component_Header/Header";
 import Sidebar from "./Component_Sidebar/Sidebar";
-import TechChart from "./Component_MainContent/Tech_Chart";
-import TechDetails from "./Component_MainContent/TechDetails";
-import CareerSection from "./Component_MainContent/CareerSection";
-import IntroCarousel from "./Component_MainContent/IntroCarousel";
+import TechChart from "./Component_MainContent/Component_Home/Tech_Chart";
+import TechDetails from "./Component_MainContent/Component_Home/TechDetails";
+import CareerSection from "./Component_MainContent/Component_Home/CareerSection";
+import IntroCarousel from "./Component_MainContent/Component_Home/IntroCarousel";
 import LoadingScreen from "./Component_Loading/LoadingScreen";
 import Footer from "./Component_Footer/Footer";
-import StatsGrid from "./Component_MainContent/StatsGrid";
-import StatsGanttChart from "./Component_MainContent/StatsGanttChart";
-import ProjectList from "./Component_MainContent/ProjectList";
-import HomePostsList from "./Component_MainContent/HomePostsList"; // ✅ 추가된 컴포넌트
+import StatsGrid from "./Component_MainContent/Component_Home/StatsGrid";
+import StatsGanttChart from "./Component_MainContent/Component_Home/StatsGanttChart";
+import ProjectList from "./Component_MainContent/Component_Home/ProjectList";
+import HomePostsList from "./Component_MainContent/Component_Home/HomePostsList"; // ✅ 추가된 컴포넌트
 
 // Back 관련 Import 리스트
 import Database from "./Component_MainContent/Component_Database/Database";
 import Network from "./Component_MainContent/Component_Network/Network";
 import DataStructure from "./Component_MainContent/Component_DataStructure/DataStructure";
 import OperatingSystem from "./Component_MainContent/Component_OperatingSystem/OperatingSystem";
+import QA from "./Component_MainContent/Component_QA/QA";
+import Interview from "./Component_MainContent/Component_Interview/Interview";
+import Front from "./Component_MainContent/Component_FrontEnd/Front";
+import Algorithm from "./Component_MainContent/Component_Algorithm/Algorithm";
+
 
 /******************************* */
 import "./App.css";
+
+
 
 function Home() {
   return (
@@ -99,6 +106,10 @@ function App() {
                   <Route path="/data-structure" element={<div className="DataStructure_Page_Container"><DataStructure /></div>} />
                   <Route path="/database" element={<div className="Database_Page_Container"><Database /></div>} />
                   <Route path="/os" element={<div className="OperatingSystem_Page_Container"><OperatingSystem /></div>} />
+                  <Route path="/qa" element={<div className="OA_Page_Container"><QA /></div>} />
+                  <Route path="/interview" element={<div className="Interview_Page_Container"><Interview /></div>} />
+                  <Route path="/frontend" element={<div className="Front_Page_Container"><Front /></div>} />
+                  <Route path="/algorithm" element={<div className="Algorithm_Page_Container"><Algorithm /></div>} />
                 </Routes>
               </div>
             </div>

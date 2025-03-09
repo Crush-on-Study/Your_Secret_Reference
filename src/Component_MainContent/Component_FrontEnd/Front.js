@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import usePosts from "../../Infra_Firebase/usePosts";
-import useAuth from "../../Infra_Firebase/useAuth";
-import PostEditor from "../../Component_Common/PostEditor";
-import "./QA.css";
+import useAuth from "../../Infra_Firebase/useAuth"; // ✅ 관리자 여부 확인 추가
+import PostEditor from "../../Component_Common/PostEditor"; // ✅ 글 작성 컴포넌트 추가
+import "./Front.css";
 
 const DEFAULT_IMAGE = "/assets/Component_MainContent_NoImage.jpg"; // ✅ 기본 이미지
-const CATEGORY = "QAPosts"; // ✅ Firestore 컬렉션명 변경
+const CATEGORY = "FrontEndPosts"; // ✅ Firestore 컬렉션명 (각 게시판별 변경 필요)
 
-const QA = () => {
-  const { posts, addNewPost } = usePosts(CATEGORY);
-  const { isAdmin } = useAuth();
+const Front = () => {
+  const { posts, addNewPost } = usePosts(CATEGORY); // ✅ Firestore에서 게시글 가져오기 + 추가 기능
+  const { isAdmin } = useAuth(); // ✅ Firestore에서 관리자 여부 확인
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [isEditorOpen, setIsEditorOpen] = useState(false); // ✅ 에디터 표시 여부
+
+  // ✅ posts가 undefined인 경우 대비
+  if (!posts) return null; // ✅ "게시글 불러오는 중..." 메시지 제거
 
   // ✅ 페이지네이션 계산
   const totalPages = Math.ceil((posts.length || 0) / postsPerPage);
@@ -28,14 +31,9 @@ const QA = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
-  // ✅ 새 게시글 추가 후 실행될 함수 (UI 업데이트)
-  const handlePostAdded = async () => {
-    setIsEditorOpen(false); // 에디터 닫기
-  };
-
   return (
-    <div className="qa-system-page">
-      <h2>🖥️ SW QA 게시판</h2>
+    <div className="front-page">
+      <h2>📡 프론트엔드 게시판</h2>
 
       {/* ✅ 관리자만 "새 글 등록" 버튼 표시 */}
       {isAdmin && (
@@ -48,7 +46,7 @@ const QA = () => {
       )}
 
       {/* ✅ 글쓰기 에디터 (관리자만 가능) */}
-      {isAdmin && isEditorOpen && <PostEditor category={CATEGORY} onPostAdded={handlePostAdded} />}
+      {isAdmin && isEditorOpen && <PostEditor category={CATEGORY} />}
 
       {/* ✅ 게시글 리스트 출력 */}
       <div className="post-list">
@@ -97,4 +95,4 @@ const QA = () => {
   );
 };
 
-export default QA;
+export default Front;

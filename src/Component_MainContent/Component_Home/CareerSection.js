@@ -1,5 +1,5 @@
 import React , {useContext} from "react";
-import { ThemeContext } from "../Component_Common/ThemeContext"; // ✅ 다크모드 감지 추가
+import { ThemeContext } from "../../Component_Common/ThemeContext"; // ✅ 다크모드 감지 추가
 import "./CareerSection.css";
 
 const CareerSection = () => {

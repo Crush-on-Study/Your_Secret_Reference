@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../Component_Common/ThemeContext"; 
+import { ThemeContext } from "../../Component_Common/ThemeContext"; 
 import Slider from "react-slick";
 import "./IntroCarousel.css";
 
