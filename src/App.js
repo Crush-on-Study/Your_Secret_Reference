@@ -12,8 +12,7 @@ import Footer from "./Component_Footer/Footer";
 import StatsGrid from "./Component_MainContent/StatsGrid";
 import StatsGanttChart from "./Component_MainContent/StatsGanttChart";
 import ProjectList from "./Component_MainContent/ProjectList";
-// import CustomCursor from "./Component_Common/CustomCursor";
-// import PostNewsList from "./Component_MainContent/PostNewsList";
+import HomePostsList from "./Component_MainContent/HomePostsList"; // ✅ 추가된 컴포넌트
 
 // Back 관련 Import 리스트
 import Database from "./Component_MainContent/Component_Database/Database";
@@ -27,12 +26,16 @@ import "./App.css";
 function Home() {
   return (
     <div className="MainContent_Container">
+      {/* ✅ "최근 글 / 인기 글 / 최근 댓글" 리스트 추가 */}
+      <div className="Home_Posts_Section">
+        <HomePostsList />
+      </div>
+
       {/* ✅ 캐러셀 + Stats 컨테이너 가로 정렬 */}
       <div className="AboutMeContainer">
         <div className="Intro_Carousel">
-        <StatsGanttChart />
+          <StatsGanttChart />
           <IntroCarousel />
-          
         </div>
         <div className="Stats_Section">
           <StatsGrid />
@@ -71,43 +74,35 @@ function App() {
 
   return (
     <ThemeProvider>
-        
       {isLoading ? (
         <LoadingScreen onComplete={() => setIsLoading(false)} />
       ) : (
         <Router>
           <div className={`Top_Container ${fadeIn ? "fade-in" : ""}`}>
-            {/* <CustomCursor /> */}
-            {/* ✅ Header */}
             <div className="Header_Container">
               <Header />
             </div>
 
             <div className="Main_Container">
-              
               {/* ✅ Sidebar (열고 닫기 상태 전달) */}
               <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
               {/* ✅ Main Content */}
               <div className={`MainContent_Container ${isSidebarOpen ? "sidebar-open" : ""}`}>
                 <Routes>
-                  
                   {/* ✅ Default Home */}
-                  <Route index element={<Home />} /> 
+                  <Route index element={<Home />} />
                   <Route path="/" element={<Home />} />
-                  
+
                   {/* ✅ 개별 페이지들도 사이드바와 함께 flex 배치 유지 */}
                   <Route path="/network" element={<div className="Network_Page_Container"><Network /></div>} />
                   <Route path="/data-structure" element={<div className="DataStructure_Page_Container"><DataStructure /></div>} />
                   <Route path="/database" element={<div className="Database_Page_Container"><Database /></div>} />
                   <Route path="/os" element={<div className="OperatingSystem_Page_Container"><OperatingSystem /></div>} />
-
                 </Routes>
               </div>
-              
-              
             </div>
-            
+
             <Footer />
           </div>
         </Router>

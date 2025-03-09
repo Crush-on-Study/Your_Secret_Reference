@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import usePosts from "../../Infra_Firebase/usePosts";
 import useAuth from "../../Infra_Firebase/useAuth";
 import PostEditor from "../../Component_Common/PostEditor";
-import "./DataStructure.css";
+import "./QA.css";
 
 const DEFAULT_IMAGE = "/assets/Component_MainContent_NoImage.jpg"; // ✅ 기본 이미지
-const CATEGORY = "DataStructurePosts"; // ✅ Firestore 컬렉션명 변경
+const CATEGORY = "QAPosts"; // ✅ Firestore 컬렉션명 변경
 
-const DataStructure = () => {
+const QA = () => {
   const { posts, addNewPost } = usePosts(CATEGORY);
   const { isAdmin } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,8 +34,8 @@ const DataStructure = () => {
   };
 
   return (
-    <div className="datastructure-system-page">
-      <h2>🖥️ 자료구조 게시판</h2>
+    <div className="qa-system-page">
+      <h2>🖥️ 운영체제 게시판</h2>
 
       {/* ✅ 관리자만 "새 글 등록" 버튼 표시 */}
       {isAdmin && (
@@ -97,4 +97,4 @@ const DataStructure = () => {
   );
 };
 
-export default DataStructure;
+export default QA;

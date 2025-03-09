@@ -1,42 +1,24 @@
 import React, { useState } from "react";
+import usePosts from "../../Infra_Firebase/usePosts";
+import useAuth from "../../Infra_Firebase/useAuth";
+import PostEditor from "../../Component_Common/PostEditor";
 import "./Database.css";
 
-// Firebase
-// import { db } from "../../firebase";
+const DEFAULT_IMAGE = "/assets/Component_MainContent_NoImage.jpg"; // ✅ 기본 이미지
+const CATEGORY = "DatabasePosts"; // ✅ Firestore 컬렉션명 변경
 
-const dummyPosts = [
-  {
-    id: 1,
-    title: "HTTP vs HTTPS: 네트워크 보안 차이점",
-    description: "웹에서 데이터를 안전하게 주고받는 HTTPS의 중요성을 알아봅니다.",
-    author: "네트워크 마스터",
-    date: "2024-03-04",
-    likes: 184,
-    comments: 16,
-    thumbnail: "/assets/dummy1.jpg",
-  },
-  {
-    id: 2,
-    title: "TCP vs UDP: 언제 어떤 프로토콜을 사용할까?",
-    description: "속도와 신뢰성의 차이를 비교하고, 어떤 상황에서 TCP와 UDP를 선택해야 하는지 알아봅니다.",
-    author: "CS 스페셜리스트",
-    date: "2024-03-03",
-    likes: 232,
-    comments: 8,
-    thumbnail: "/assets/dummy2.webp",
-  },
-];
-
-const Network = () => {
-   // const [posts, setPosts] = useState([]);
+const Database = () => {
+  const { posts, addNewPost } = usePosts(CATEGORY);
+  const { isAdmin } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
 
-  // 페이지네이션 처리
-  const totalPages = Math.ceil(dummyPosts.length / postsPerPage);
+  // ✅ 페이지네이션 계산
+  const totalPages = Math.ceil((posts.length || 0) / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = dummyPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = posts?.slice(indexOfFirstPost, indexOfLastPost) || [];
 
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -46,29 +28,51 @@ const Network = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  // ✅ 새 게시글 추가 후 실행될 함수 (UI 업데이트)
+  const handlePostAdded = async () => {
+    setIsEditorOpen(false); // 에디터 닫기
+  };
+
   return (
-    <div className="network-page">
-      <h2>📡 네트워크 게시판</h2>
+    <div className="database-system-page">
+      <h2>🖥️ 데이터베이스 게시판</h2>
+
+      {/* ✅ 관리자만 "새 글 등록" 버튼 표시 */}
+      {isAdmin && (
+        <button
+          className="new-post-button"
+          onClick={() => setIsEditorOpen(!isEditorOpen)}
+        >
+          {isEditorOpen ? "✖ 닫기" : "✍ 새 글 등록"}
+        </button>
+      )}
+
+      {/* ✅ 글쓰기 에디터 (관리자만 가능) */}
+      {isAdmin && isEditorOpen && <PostEditor category={CATEGORY} onPostAdded={handlePostAdded} />}
+
+      {/* ✅ 게시글 리스트 출력 */}
       <div className="post-list">
-        {currentPosts.length > 0 ? (
-          currentPosts.map((post) => (
-            <div key={post.id} className="post-item">
-              <img src={post.thumbnail} alt={post.title} className="post-thumbnail" />
-              <div className="post-content">
-                <h3 className="post-title">{post.title}</h3>
-                <p className="post-description">{post.description}</p>
-                <div className="post-info">
-                  <span>{post.author}</span> · <span>{post.date}</span>
-                </div>
-                <div className="post-stats">
-                  👍 {post.likes} | 💬 {post.comments}
-                </div>
+        {currentPosts.map((post) => (
+          <div key={post.id} className="post-item">
+            <img 
+              src={post.thumbnail || DEFAULT_IMAGE} 
+              alt={post.title} 
+              className="post-thumbnail" 
+            />
+            <div className="post-content">
+              <h3 className="post-title">{post.title}</h3>
+              <p className="post-description">
+                {post.content.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 100)}...
+              </p>
+              <div className="post-info">
+                <span>{post.author || "익명"}</span> · <span>{post.createdAt || "날짜 없음"}</span>
+              </div>
+              <div className="post-stats">
+                👍 {post.likes || 0} | 💬 {post.comments || 0}
               </div>
             </div>
-          ))
-        ) : (
-          <p className="empty-message">등록된 게시글이 없습니다.</p>
-        )}
+          </div>
+        ))}
       </div>
 
       {/* ✅ 페이지네이션 UI */}
@@ -93,4 +97,4 @@ const Network = () => {
   );
 };
 
-export default Network;
+export default Database;

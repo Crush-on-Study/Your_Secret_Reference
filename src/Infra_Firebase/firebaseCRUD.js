@@ -1,49 +1,34 @@
-import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, getDocs } from "firebase/firestore";
 
 const db = getFirestore();
-const auth = getAuth();
 
 /**
- * ✅ Firestore에서 GNB별 게시글 목록 가져오기 (실시간 반영)
- * @param {string} category - 게시판 카테고리 (예: "network", "database", "algorithm")
+ * ✅ Firestore에서 특정 카테고리의 게시글 목록 가져오기 (실시간 업데이트)
+ * @param {string} category - 게시판 카테고리 (예: "NetworkPosts", "DatabasePosts")
  * @param {function} callback - 데이터를 업데이트할 함수
  */
 export const fetchPosts = (category, callback) => {
   if (!category || typeof category !== "string") {
-    console.error("❌ fetchPosts: 유효하지 않은 카테고리 값입니다! 기본값 'posts'로 설정");
-    category = "posts"; // 기본값 설정
+    console.error("❌ fetchPosts: 유효하지 않은 카테고리 값입니다!");
+    return;
   }
 
-  const collectionName = `${category}Posts`.replace("//", "/"); // ✅ 슬래시 두 개 방지
-  console.log(`📌 Firestore에서 불러올 컬렉션: ${collectionName}`);
-
-  const postsRef = collection(db, collectionName);
+  const postsRef = collection(db, category);
+  console.log(`📌 Firestore에서 ${category} 게시글 불러오기 시작`);
 
   const unsubscribe = onSnapshot(postsRef, (snapshot) => {
     const posts = snapshot.docs.map((doc) => {
       const data = doc.data();
-
-      // ✅ Firestore Timestamp → JS 날짜 변환
-      let formattedDate = "날짜 없음";
-      if (data.createdAt && data.createdAt.seconds) {
-        formattedDate = new Date(data.createdAt.seconds * 1000).toLocaleDateString("ko-KR", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-      }
-
       return {
         id: doc.id,
         ...data,
-        createdAt: formattedDate, // ✅ 변환된 날짜 저장
+        createdAt: data.createdAt?.seconds
+          ? new Date(data.createdAt.seconds * 1000).toLocaleString("ko-KR")
+          : "날짜 없음",
       };
     });
 
-    console.log("✅ Firestore에서 변환된 게시글 데이터:", posts);
+    console.log("✅ Firestore에서 불러온 게시글:", posts);
     callback(posts);
   });
 
@@ -52,33 +37,65 @@ export const fetchPosts = (category, callback) => {
 
 /**
  * ✅ Firestore에 새 게시글 추가 (카테고리별 컬렉션 적용)
- * @param {string} category - 게시판 카테고리 (예: "network", "database", "algorithm")
+ * @param {string} category - 게시판 카테고리 (예: "NetworkPosts", "DatabasePosts")
  * @param {string} title - 게시글 제목
  * @param {string} content - 게시글 내용
- * @param {string} [author="Crush on Study"] - 작성자 (기본값: "Crush on Study")
+ * @param {string} author - 작성자
  */
-export const addPost = async (category, title, content, author = "Crush on Study") => {
+export const addPost = async (category, title, content, author = "익명") => {
   if (!category || typeof category !== "string") {
-    console.error("❌ addPost: 유효하지 않은 카테고리 값입니다! 기본값 'posts'로 설정");
-    category = "posts"; // 기본값 설정
+    console.error("❌ addPost: 유효하지 않은 카테고리 값입니다!");
+    return;
   }
 
-  const collectionName = `${category}Posts`.replace("//", "/"); // ✅ 슬래시 두 개 방지
-  console.log(`🔥 addPost 실행됨! 카테고리: ${collectionName}`);
-
   try {
-    console.log("📌 저장할 데이터:", { title, content, author });
+    console.log(`🔥 Firestore(${category})에 게시글 추가 중...`);
 
-    const docRef = await addDoc(collection(db, collectionName), {
+    const docRef = await addDoc(collection(db, category), {
       title,
       content,
       author,
       createdAt: serverTimestamp(),
     });
 
-    console.log(`✅ Firestore(${collectionName})에 저장 완료! ID:`, docRef.id);
+    console.log(`✅ Firestore(${category})에 저장 완료! 문서 ID: ${docRef.id}`);
     return docRef.id;
   } catch (error) {
     console.error("❌ Firestore 저장 오류:", error);
   }
+};
+
+// ✅ Firestore에서 모든 게시판의 게시글 가져오기
+export const fetchAllPosts = async () => {
+  const categories = [
+    "NetworkPosts",
+    "DatabasePosts",
+    "OperatingSystemPosts",
+    "AlgorithmPosts",
+    "FrontendPosts",
+    "QAPosts",
+    "RealInterviewPosts",
+    "DataStructurePosts",
+  ];
+
+  let allPosts = [];
+
+  for (const category of categories) {
+    const postsRef = collection(db, category);
+    const querySnapshot = await getDocs(postsRef);
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      allPosts.push({
+        id: doc.id,
+        ...data,
+        category,
+        createdAt: data.createdAt?.seconds
+          ? new Date(data.createdAt.seconds * 1000).toLocaleDateString("ko-KR")
+          : "날짜 없음",
+      });
+    });
+  }
+
+  return allPosts;
 };
