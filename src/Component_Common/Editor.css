@@ -11,6 +11,12 @@
     align-items: center;
 }
 
+/* ✅ 다크모드 스타일 */
+.dark-mode {
+    background: #2b2b2b;
+    color: white;
+}
+
 /* ✅ 제목 입력 필드 */
 .title-input {
     width: 100%;
@@ -51,15 +57,37 @@
     border-bottom: 2px solid #ddd;
 }
 
+/* ✅ 다크모드 툴바 스타일 */
+.dark-mode .ql-toolbar {
+    background: #3b3b3b;
+    border-bottom: 2px solid #555;
+}
+
 /* ✅ 에디터 내부 스타일 */
 .ql-container {
     min-height: 200px;
     font-size: 16px;
 }
 
+/* ✅ 다크모드 에디터 스타일 */
+.dark-mode .quill-editor {
+    background: #333;
+    border-color: #555;
+}
+
+.dark-mode .ql-container {
+    color: white;
+}
+
+/* ✅ 버튼 그룹 스타일 */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
 /* ✅ 새 글 등록 버튼 */
 .submit-button {
-    margin-top: 15px;
     padding: 12px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -74,6 +102,44 @@
 /* ✅ 버튼 호버 효과 */
 .submit-button:hover {
     background: linear-gradient(90deg, #6a49e0, #00b8d4);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ 수정 버튼 (수정 모드일 때) */
+.edit-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* ✅ 수정 버튼 호버 효과 */
+.edit-button:hover {
+    background: linear-gradient(90deg, #e68900, #e64a19);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ 삭제 버튼 */
+.delete-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #f44336;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+/* ✅ 삭제 버튼 호버 효과 */
+.delete-button:hover {
+    background: #d32f2f;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -92,7 +158,9 @@
         min-height: 150px;
     }
 
-    .submit-button {
+    .submit-button,
+    .edit-button,
+    .delete-button {
         padding: 10px 18px;
         font-size: 14px;
     }
