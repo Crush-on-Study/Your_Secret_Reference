@@ -19,12 +19,12 @@ const projectData = [
     description: "공정, 수송, 사용, 폐기 및 재활용 과정에서 발생한 탄소데이터 실시간 발생 현황 제공"
   },
   {
-    year: "2022.01 ~ 2022.06",
-    company: "Company C",
-    title: "반도체 테스트 자동화 프로그램 구축",
-    role: "임베디드 엔지니어",
-    techStack: "C++",
-    description: "그냥 좋은거 함"
+    year: "2025.03 ~ 2025.06",
+    company: "Company A",
+    title: "사내 Service Request 관리 프로그램 구현",
+    role: "기획자 , 백엔드 개발자 , 프론트엔드 보조",
+    techStack: "Vue.js , Node.js , Figma , Notion",
+    description: "기간계 시스템 경량화를 위한 SR Tab 독립 모듈화 및 고도화 작업"
   }
 ];
 
