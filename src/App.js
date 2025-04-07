@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, useParams } from "react-router-dom";
 import { ThemeProvider } from "./Component_Common/ThemeContext";
 import Header from "./Component_Header/Header";
 import Sidebar from "./Component_Sidebar/Sidebar";
@@ -12,23 +12,39 @@ import Footer from "./Component_Footer/Footer";
 import StatsGrid from "./Component_MainContent/Component_Home/StatsGrid";
 import StatsGanttChart from "./Component_MainContent/Component_Home/StatsGanttChart";
 import ProjectList from "./Component_MainContent/Component_Home/ProjectList";
-import HomePostsList from "./Component_MainContent/Component_Home/HomePostsList"; 
-
-// ✅ Back 관련 Import 리스트
-import Database from "./Component_MainContent/Component_Database/Database";
-import Network from "./Component_MainContent/Component_Network/Network";
-import DataStructure from "./Component_MainContent/Component_DataStructure/DataStructure";
-import OperatingSystem from "./Component_MainContent/Component_OperatingSystem/OperatingSystem";
-import QA from "./Component_MainContent/Component_QA/QA";
+import HomePostsList from "./Component_MainContent/Component_Home/HomePostsList";
 import Interview from "./Component_MainContent/Component_Interview/Interview";
 import Interview_PostDetail from "./Component_MainContent/Component_Interview/Interview_PostDetail";
-import PostEditor from "./Component_Common/PostEditor"; 
-import Front from "./Component_MainContent/Component_FrontEnd/Front";
-import Algorithm from "./Component_MainContent/Component_Algorithm/Algorithm";
-
+import PostEditor from "./Component_Common/PostEditor";
+import PostBoard from "./Component_Common/PostBoard";
 import "./App.css";
 
-/******************************* */
+// 게시판 카테고리와 제목 매핑
+const BOARD_CATEGORIES = {
+  network: { title: "🖥️ 네트워크 게시판", category: "NetworkPosts" },
+  "data-structure": { title: "🖥️ 자료구조 게시판", category: "DataStructurePosts" },
+  database: { title: "🖥️ 데이터베이스 게시판", category: "DatabasePosts" },
+  os: { title: "🖥️ 운영체제 게시판", category: "OperatingSystemPosts" },
+  qa: { title: "🖥️ QA 게시판", category: "QAPosts" },
+  frontend: { title: "🖥️ 프론트엔드 게시판", category: "FrontEndPosts" },
+  algorithm: { title: "🖥️ 알고리즘 게시판", category: "AlgorithmPosts" },
+};
+
+// 동적 게시판 컴포넌트
+const BoardPage = () => {
+  const { category } = useParams();
+  const boardConfig = BOARD_CATEGORIES[category];
+
+  if (!boardConfig) {
+    return <div>존재하지 않는 게시판입니다.</div>;
+  }
+
+  return (
+    <div className="MainContent_Container">
+      <PostBoard title={boardConfig.title} category={boardConfig.category} />
+    </div>
+  );
+};
 
 function Home() {
   return (
@@ -67,7 +83,7 @@ function Home() {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [fadeIn, setFadeIn] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -88,27 +104,34 @@ function App() {
             </div>
 
             <div className="Main_Container">
-              <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+              <Sidebar
+                isOpen={isSidebarOpen}
+                toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+              />
 
-              <div className={`MainContent_Container ${isSidebarOpen ? "sidebar-open" : ""}`}>
+              <div
+                className={`MainContent_Container ${
+                  isSidebarOpen ? "sidebar-open" : ""
+                }`}
+              >
                 <Routes>
-                  {/* ✅ Default Home */}
+                  {/* Default Home */}
                   <Route index element={<Home />} />
                   <Route path="/" element={<Home />} />
 
-                  {/* ✅ GNB 메뉴별 라우팅 */}
-                  <Route path="/network" element={<div className="Network_Page_Container"><Network /></div>} />
-                  <Route path="/data-structure" element={<div className="DataStructure_Page_Container"><DataStructure /></div>} />
-                  <Route path="/database" element={<div className="Database_Page_Container"><Database /></div>} />
-                  <Route path="/os" element={<div className="OperatingSystem_Page_Container"><OperatingSystem /></div>} />
-                  <Route path="/qa" element={<div className="QA_Page_Container"><QA /></div>} />
-                  <Route path="/frontend" element={<div className="Front_Page_Container"><Front /></div>} />
-                  <Route path="/algorithm" element={<div className="Algorithm_Page_Container"><Algorithm /></div>} />
+                  {/* 동적 게시판 라우팅 */}
+                  <Route path="/:category" element={<BoardPage />} />
 
-                  {/* ✅ 면접 게시판 라우팅 */}
+                  {/* 면접 게시판 라우팅 */}
                   <Route path="/interview" element={<Interview />} />
-                  <Route path="/interview/post/:postId" element={<Interview_PostDetail />} />
-                  <Route path="/interview/new" element={<PostEditor category="RealInterviewPosts" />} />
+                  <Route
+                    path="/interview/post/:postId"
+                    element={<Interview_PostDetail />}
+                  />
+                  <Route
+                    path="/interview/new"
+                    element={<PostEditor category="RealInterviewPosts" />}
+                  />
                 </Routes>
               </div>
             </div>

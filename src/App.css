@@ -7,7 +7,7 @@
     overflow-x: hidden;
     background-color: #f8f9fa; /* ✅ 기본 배경 (라이트 모드) */
     transition: background 0.3s ease-in-out;
-    z-index: 1;  /* ✅ 기본값 */
+    z-index: 1; /* ✅ 기본값 */
 }
 
 /* ✅ 전체 컨테이너 다크모드 적용 */
