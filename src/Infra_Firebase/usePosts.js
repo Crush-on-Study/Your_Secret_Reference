@@ -1,26 +1,50 @@
 import { useState, useEffect } from "react";
-import { fetchPosts } from "./firebaseCRUD"; // Firestore CRUD 함수 가져오기
+import { db } from "./firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 
 const usePosts = (category) => {
-  const [posts, setPosts] = useState([]);  
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log(`🔥 Firestore에서 ${category} 게시글 불러오는 중...`);
+    if (!category) {
+      setError("카테고리가 지정되지 않았습니다.");
+      return;
+    }
 
-    // ✅ Firestore 구독 시작
-    const unsubscribe = fetchPosts(category, (data) => {
-      console.log("✅ Firestore에서 불러온 게시글:", data);
-      setPosts(data || []); 
-    });
+    setIsLoading(true);
+    setError(null);
 
-    // ✅ 컴포넌트 언마운트 시 Firestore 구독 해제
-    return () => {
-      console.log("🛑 Firestore 구독 해제됨!");
-      unsubscribe(); 
-    };
+    const postsRef = collection(db, category);
+    const unsubscribe = onSnapshot(
+      postsRef,
+      (snapshot) => {
+        const fetchedPosts = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            createdAt: data.createdAt
+              ? data.createdAt.toDate().toLocaleString("ko-KR")
+              : "날짜 없음",
+          };
+        });
+        setPosts(fetchedPosts);
+        setIsLoading(false);
+      },
+      (err) => {
+        console.error("onSnapshot 오류:", err);
+        setError(err.message || "게시글을 불러오는 데 실패했습니다.");
+        setPosts([]);
+        setIsLoading(false);
+      }
+    );
+
+    return () => unsubscribe();
   }, [category]);
 
-  return { posts };
+  return { posts, isLoading, error };
 };
 
 export default usePosts;
