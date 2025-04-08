@@ -1,0 +1,237 @@
+/* ✅ 헤더 스타일 수정 */
+.header {
+    width: 100%;
+    height: 300px; /* ✅ 헤더 높이 조정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: background 0.5s ease-in-out;
+    overflow: hidden;
+    z-index: 1050; /* ✅ 헤더를 충분히 위로 배치 */
+}
+
+/* ✅ 헤더 오버레이 */
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+/* ✅ 다크 모드 & 라이트 모드 배경 설정 */
+.light-mode .header {
+    color: black;
+}
+
+.dark-mode .header {
+    color: white;
+}
+
+/* ✅ 블로그 제목 스타일 */
+.blog-title {
+    font-size: 3rem;
+    font-weight: bold;
+    position: relative;
+    z-index: 10;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    width: 0;
+    animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* ✅ 블로그 부제목 스타일 */
+.subtitle {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ✅ GNB (네비게이션 바) 스타일 */
+.nav-menu {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1051;
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+/* ✅ 기본 GNB 스타일 */
+.nav-menu .nav-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+/* ✅ 호버 효과 */
+.nav-menu .nav-link:hover {
+    color: #ff5c5c;
+}
+
+/* ✅ 현재 선택된 GNB 항목 (라이트 모드) */
+.light-mode .nav-menu .nav-link.active {
+    background: #ff5c5c;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 현재 선택된 GNB 항목 (다크 모드) */
+.dark-mode .nav-menu .nav-link.active {
+    background: #ffb400;
+    color: #222;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.2);
+}
+
+.nav-menu a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #ff5c5c;
+}
+
+/* ✅ 검색창 중앙 배치 & 크기 확대 */
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1051; /* ✅ 검색창도 충분히 위에 배치 */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex-grow: 1;
+    font-size: 16px;
+    color: white;
+}
+
+.search-button {
+    background: #ff5c5c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-button:hover {
+    background: #ff3b3b;
+}
+
+/* ✅ 로그인 폼 관련 스타일 수정 */
+.login-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    gap: 10px;
+    margin-right: 15px;
+    z-index: 1100;  /* ✅ 네비게이션보다 위로 배치 */
+}
+
+/* 로그인 버튼 스타일 */
+.login-button {
+    width: 80px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(90deg, #ace0aa, #00d2ff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-button:hover {
+    background: linear-gradient(90deg, #6a49e0, #00b8d4);
+}
+
+/* ✅ 로그인 폼 스타일 */
+.login-form {
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 500px;
+    position: fixed;  /* ✅ absolute → fixed로 변경 */
+    top: 80px;  /* ✅ 헤더 높이 고려 */
+    right: 50px;
+    z-index: 1101;  /* ✅ 가장 위로 배치 */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* 로그인 폼이 열릴 때 */
+.login-form.open {
+    opacity: 1;
+    transform: translateY(0);
+}

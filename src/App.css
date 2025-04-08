@@ -1,0 +1,190 @@
+/* ✅ 전체 컨테이너 */
+.Top_Container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: #f8f9fa; /* ✅ 기본 배경 (라이트 모드) */
+    transition: background 0.3s ease-in-out;
+    z-index: 1; /* ✅ 기본값 */
+}
+
+/* ✅ 전체 컨테이너 다크모드 적용 */
+body.dark-mode .Top_Container {
+    background-color: #121212; /* ✅ 다크 모드 배경 */
+}
+
+/* ✅ 헤더는 z-index 1050 */
+.Header_Container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1050; /* ✅ 헤더를 다른 요소보다 높게 배치 */
+}
+
+/* ✅ 사이드바는 최상위 배치 (z-index: 1103) */
+.Sidebar_Container {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    height: 100%;
+    z-index: 1; /* ✅ 사이드바가 모든 요소 위로 배치됨 */
+    background: #222;
+    transition: left 0.3s ease;
+}
+
+/* ✅ 사이드바가 열리면 화면에 나타나도록 설정 */
+.sidebar-open {
+    left: 0;
+}
+
+/* ✅ 사이드바 토글 버튼 (z-index: 1104) */
+.Sidebar_ToggleButton {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    background: #7a57ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1104; /* ✅ 모든 요소보다 최상위 */
+    transition: background 0.3s;
+}
+
+.Sidebar_ToggleButton:hover {
+    background: #6a49e0;
+}
+
+/* ✅ 메인 컨테이너 (사이드바 너비 포함) */
+.Main_Container {
+    display: flex;
+    flex: 1;
+    gap: 15px;
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+    margin: auto;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+/* ✅ 메인 컨텐츠 확장 */
+.MainContent_Container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ✅ AboutMeContainer (캐러셀 + Stats) */
+.AboutMeContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    max-width: 100%;
+    z-index: 1;
+}
+
+/* ✅ 캐러셀 & Stats 가로 정렬 */
+.Intro_Carousel,
+.Stats_Section {
+    flex: 1;
+    min-width: 450px;
+    max-width: 50%;
+}
+
+/* ✅ StatsGrid (화면 크기에 따라 자동 조정) */
+.StatsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+/* ✅ TechChart와 TechNetwork (가로 배치) */
+.chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.Tech_chart,
+.Tech_Detail {
+    flex: 1;
+    min-width: 450px;
+    max-width: 50%;
+}
+
+/* ✅ 반응형 적용 */
+
+/* 📌 1024px 이하 → 사이드바 버튼 추가 */
+@media (max-width: 1024px) {
+    .Sidebar_Container {
+        display: block;
+        width: 250px;
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100%;
+        background: #222;
+        transition: left 0.3s ease;
+        z-index: 1103; /* ✅ 모바일에서도 사이드바가 최상위 유지 */
+    }
+
+    .Sidebar_ToggleButton {
+        display: flex; /* ✅ 모바일에서 버튼 항상 표시 */
+    }
+}
+
+/* 📌 768px 이하 → 세로 정렬 */
+@media (max-width: 768px) {
+    .Main_Container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 98vw;
+    }
+
+    .Sidebar_Container {
+        display: none;
+    }
+
+    .MainContent_Container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* 📌 AboutMeContainer 세로 정렬 */
+    .AboutMeContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 📌 Chart 컨테이너 세로 정렬 */
+    .chart {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 📌 StatsGrid 4*1 세로 정렬 */
+    .StatsGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

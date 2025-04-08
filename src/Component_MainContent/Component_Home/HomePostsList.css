@@ -1,0 +1,119 @@
+/* ✅ 전체 리스트 컨테이너 */
+.home-posts-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    padding: 30px;
+    max-width: 85%;
+    background: var(--bg-color);
+    border-radius: 18px;
+    box-shadow: 0px 5px 30px var(--shadow-color);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ 개별 리스트 섹션 (부드러운 네온 효과 적용) */
+.posts-section {
+    flex: 1;
+    padding: 25px;
+    max-width: 420px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* ✅ 마우스 호버 시 부드러운 그림자 강조 */
+.posts-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px var(--shadow-hover);
+}
+
+/* ✅ 리스트 제목 - 부드러운 네온 효과 */
+.posts-section h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--title-color);
+}
+
+/* ✅ 최근 글 - 블루 계열 */
+.posts-section.recent-posts h3 {
+    color: #42a5f5;
+}
+
+/* ✅ 최근 댓글 - 그린 계열 */
+.posts-section.recent-comments h3 {
+    color: #66bb6a;
+}
+
+/* ✅ 인기 글 - 옐로우 계열 */
+.posts-section.popular-posts h3 {
+    color: #ffa726;
+}
+
+/* ✅ 리스트 스타일 */
+.posts-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* ✅ 리스트 아이템 */
+.posts-section li {
+    font-size: 18px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+/* ✅ 리스트 링크 */
+.posts-section li a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease-in-out;
+}
+
+/* ✅ 링크 호버 효과 */
+.posts-section li a:hover {
+    text-decoration: underline;
+    color: var(--link-hover);
+}
+
+/* ✅ 라이트 모드 - 미래적 테마 */
+:root {
+    --bg-color: #e3f2fd;
+    --card-bg: linear-gradient(135deg, #f0f0f0, #e0f7fa);
+    --title-color: #212121;
+    --border-color: #bbb;
+    --link-color: #007bff;
+    --link-hover: #ff9800;
+    --shadow-color: rgba(0, 100, 255, 0.15);
+    --shadow-hover: rgba(0, 100, 255, 0.3);
+}
+
+/* ✅ 다크 모드 - 부드러운 네온 테마 */
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: linear-gradient(135deg, #2c2c2c, #3d3d3d);
+    --title-color: #e0e0e0;
+    --border-color: #444;
+    --link-color: #ffa726;
+    --link-hover: #ff7043;
+    --shadow-color: rgba(255, 150, 50, 0.15);
+    --shadow-hover: rgba(255, 150, 50, 0.25);
+}
+
+/* ✅ 페이드 인 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

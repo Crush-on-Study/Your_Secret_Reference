@@ -1,0 +1,36 @@
+.radar-chart-container {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ✅ 제목 스타일 */
+.chart-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ✅ 다크모드 적용 */
+.radar-chart-container.dark-mode {
+    background: #1e1e1e; /* ✅ 다크모드 배경 */
+    color: #f8f9fa;
+}
+
+/* ✅ 다크모드에서 제목 색상 강조 */
+.radar-chart-container.dark-mode .chart-title {
+    color: #ffcc00;
+}
+
+/* ✅ 대비 높은 강조 텍스트 */
+.highlight-text {
+    color: #007bff;
+}
+
+.radar-chart-container.dark-mode .highlight-text {
+    color: #ffcc00;
+}

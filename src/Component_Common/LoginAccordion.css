@@ -1,0 +1,257 @@
+/* ✅ 로그인 컨테이너 스타일 */
+.login-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    z-index: 1100;  /* ✅ 헤더 위에 배치 */
+    gap: 0; /* ✅ 간격 제거 */
+}
+
+/* ✅ 로그인 버튼 (라이트 모드) */
+.light-mode .login-button {
+    width: 80px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(90deg, #ace0aa, #00d2ff); /* ✅ 밝은 색상 */
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.light-mode .login-button:hover {
+    background: linear-gradient(90deg, #6a49e0, #00b8d4);
+}
+
+/* ✅ 로그인 버튼 (다크 모드) */
+.dark-mode .login-button {
+    width: 80px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(90deg, #ff9800, #ff3d00); /* ✅ 다크모드에서는 따뜻한 색상 (오렌지 → 레드) */
+    color: #222; /* ✅ 다크 모드에서 대비되는 어두운 텍스트 */
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dark-mode .login-button:hover {
+    background: linear-gradient(90deg, #ff6f00, #d50000); /* ✅ 호버 시 더 진한 색상 */
+}
+
+
+/* ✅ 로그인 폼 스타일 */
+.login-form {
+    display: flex;
+    background: rgba(255, 255, 255, 0.3); /* ✅ opacity 추가 */
+    padding: 0; /* ✅ 내부 패딩 제거 */
+    border-radius: 20px; /* ✅ 모서리 둥글게 */
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 800px;
+    position: fixed;  /* ✅ absolute → fixed로 변경 */
+    top: 80px;  /* ✅ 헤더 높이 고려 */
+    right: 50px;
+    z-index: 1101;  /* ✅ 모든 요소 중 최상위 */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* 로그인 폼이 열릴 때 */
+.login-form.open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 로그인 좌측 */
+.login-left {
+    width: 50%;
+    padding: 0; /* ✅ 간격 제거 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 20px 0 0 20px; /* ✅ 모서리 둥글게 */
+}
+
+.login-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 0 0 20px; /* ✅ 모서리 둥글게 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+.login-text {
+    font-size: 12px;
+    color: gray;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* 로그인 우측 */
+.login-right {
+    width: 50%;
+    padding: 20px; /* ✅ 패딩 추가 */
+    text-align: left;
+    border-radius: 0 20px 20px 0; /* ✅ 모서리 둥글게 */
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+}
+
+.greeting {
+    color: #7a57ff;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.bold-text {
+    font-weight: 600;
+}
+
+/* 입력 필드 */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: opacity 0.5s ease-in-out;
+    border-bottom: 2px solid rgba(0, 128, 255, 0.6);
+}
+
+.input-group .icon {
+    margin-right: 10px;
+    color: white;
+}
+
+.input-group input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex-grow: 1;
+    font-size: 16px;
+    color: black;
+}
+
+/* 포겟 아이디 & 패스워드 */
+.forgot-link {
+    font-size: 12px;
+    color: #7a57ff;
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+/* 로그인 제출 버튼 */
+.submit-button {
+    background: linear-gradient(90deg, #7a57ff, #00d2ff);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-button:hover {
+    background: linear-gradient(90deg, #6a49e0, #00b8d4);
+}
+
+/* ✅ "Forgot ID?" & "Create Account" 버튼 스타일 */
+.forgot-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.forgot-link {
+    color: #7a57ff;
+    cursor: pointer;
+}
+
+.create-account {
+    color: #00b8d4;
+    cursor: pointer;
+    font-weight: bold;
+}
+.create-account:hover {
+    text-decoration: underline;
+}
+
+
+/* ✅ Progressive Disclosure Pattern 애니메이션 */
+.id-confirmation {
+    font-size: 14px;
+    color: #00c853;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* ✅ 단계별 부드러운 전환 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* 반응형 */
+@media (max-width: 600px) {
+    .login-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .login-left, .login-right {
+        width: 100%;
+        text-align: center;
+    }
+}
